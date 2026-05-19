@@ -9,61 +9,394 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
+import { Route as HqRouteImport } from './routes/_hq'
+import { Route as HqIndexRouteImport } from './routes/_hq.index'
+import { Route as HqVaultIndexRouteImport } from './routes/_hq.vault.index'
+import { Route as HqSupportIndexRouteImport } from './routes/_hq.support.index'
+import { Route as HqSubscriptionsIndexRouteImport } from './routes/_hq.subscriptions.index'
+import { Route as HqStaffIndexRouteImport } from './routes/_hq.staff.index'
+import { Route as HqSmsIndexRouteImport } from './routes/_hq.sms.index'
+import { Route as HqSecurityIndexRouteImport } from './routes/_hq.security.index'
+import { Route as HqProjectsIndexRouteImport } from './routes/_hq.projects.index'
+import { Route as HqProductsIndexRouteImport } from './routes/_hq.products.index'
+import { Route as HqOfficeIndexRouteImport } from './routes/_hq.office.index'
+import { Route as HqMarketingIndexRouteImport } from './routes/_hq.marketing.index'
+import { Route as HqFinanceIndexRouteImport } from './routes/_hq.finance.index'
+import { Route as HqDeveloperIndexRouteImport } from './routes/_hq.developer.index'
+import { Route as HqClientsIndexRouteImport } from './routes/_hq.clients.index'
+import { Route as HqAiIndexRouteImport } from './routes/_hq.ai.index'
+import { Route as HqClientsIdRouteImport } from './routes/_hq.clients.$id'
 
-const IndexRoute = IndexRouteImport.update({
+const HqRoute = HqRouteImport.update({
+  id: '/_hq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HqIndexRoute = HqIndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => HqRoute,
+} as any)
+const HqVaultIndexRoute = HqVaultIndexRouteImport.update({
+  id: '/vault/',
+  path: '/vault/',
+  getParentRoute: () => HqRoute,
+} as any)
+const HqSupportIndexRoute = HqSupportIndexRouteImport.update({
+  id: '/support/',
+  path: '/support/',
+  getParentRoute: () => HqRoute,
+} as any)
+const HqSubscriptionsIndexRoute = HqSubscriptionsIndexRouteImport.update({
+  id: '/subscriptions/',
+  path: '/subscriptions/',
+  getParentRoute: () => HqRoute,
+} as any)
+const HqStaffIndexRoute = HqStaffIndexRouteImport.update({
+  id: '/staff/',
+  path: '/staff/',
+  getParentRoute: () => HqRoute,
+} as any)
+const HqSmsIndexRoute = HqSmsIndexRouteImport.update({
+  id: '/sms/',
+  path: '/sms/',
+  getParentRoute: () => HqRoute,
+} as any)
+const HqSecurityIndexRoute = HqSecurityIndexRouteImport.update({
+  id: '/security/',
+  path: '/security/',
+  getParentRoute: () => HqRoute,
+} as any)
+const HqProjectsIndexRoute = HqProjectsIndexRouteImport.update({
+  id: '/projects/',
+  path: '/projects/',
+  getParentRoute: () => HqRoute,
+} as any)
+const HqProductsIndexRoute = HqProductsIndexRouteImport.update({
+  id: '/products/',
+  path: '/products/',
+  getParentRoute: () => HqRoute,
+} as any)
+const HqOfficeIndexRoute = HqOfficeIndexRouteImport.update({
+  id: '/office/',
+  path: '/office/',
+  getParentRoute: () => HqRoute,
+} as any)
+const HqMarketingIndexRoute = HqMarketingIndexRouteImport.update({
+  id: '/marketing/',
+  path: '/marketing/',
+  getParentRoute: () => HqRoute,
+} as any)
+const HqFinanceIndexRoute = HqFinanceIndexRouteImport.update({
+  id: '/finance/',
+  path: '/finance/',
+  getParentRoute: () => HqRoute,
+} as any)
+const HqDeveloperIndexRoute = HqDeveloperIndexRouteImport.update({
+  id: '/developer/',
+  path: '/developer/',
+  getParentRoute: () => HqRoute,
+} as any)
+const HqClientsIndexRoute = HqClientsIndexRouteImport.update({
+  id: '/clients/',
+  path: '/clients/',
+  getParentRoute: () => HqRoute,
+} as any)
+const HqAiIndexRoute = HqAiIndexRouteImport.update({
+  id: '/ai/',
+  path: '/ai/',
+  getParentRoute: () => HqRoute,
+} as any)
+const HqClientsIdRoute = HqClientsIdRouteImport.update({
+  id: '/clients/$id',
+  path: '/clients/$id',
+  getParentRoute: () => HqRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
+  '/': typeof HqIndexRoute
+  '/clients/$id': typeof HqClientsIdRoute
+  '/ai/': typeof HqAiIndexRoute
+  '/clients/': typeof HqClientsIndexRoute
+  '/developer/': typeof HqDeveloperIndexRoute
+  '/finance/': typeof HqFinanceIndexRoute
+  '/marketing/': typeof HqMarketingIndexRoute
+  '/office/': typeof HqOfficeIndexRoute
+  '/products/': typeof HqProductsIndexRoute
+  '/projects/': typeof HqProjectsIndexRoute
+  '/security/': typeof HqSecurityIndexRoute
+  '/sms/': typeof HqSmsIndexRoute
+  '/staff/': typeof HqStaffIndexRoute
+  '/subscriptions/': typeof HqSubscriptionsIndexRoute
+  '/support/': typeof HqSupportIndexRoute
+  '/vault/': typeof HqVaultIndexRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
+  '/': typeof HqIndexRoute
+  '/clients/$id': typeof HqClientsIdRoute
+  '/ai': typeof HqAiIndexRoute
+  '/clients': typeof HqClientsIndexRoute
+  '/developer': typeof HqDeveloperIndexRoute
+  '/finance': typeof HqFinanceIndexRoute
+  '/marketing': typeof HqMarketingIndexRoute
+  '/office': typeof HqOfficeIndexRoute
+  '/products': typeof HqProductsIndexRoute
+  '/projects': typeof HqProjectsIndexRoute
+  '/security': typeof HqSecurityIndexRoute
+  '/sms': typeof HqSmsIndexRoute
+  '/staff': typeof HqStaffIndexRoute
+  '/subscriptions': typeof HqSubscriptionsIndexRoute
+  '/support': typeof HqSupportIndexRoute
+  '/vault': typeof HqVaultIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
+  '/_hq': typeof HqRouteWithChildren
+  '/_hq/': typeof HqIndexRoute
+  '/_hq/clients/$id': typeof HqClientsIdRoute
+  '/_hq/ai/': typeof HqAiIndexRoute
+  '/_hq/clients/': typeof HqClientsIndexRoute
+  '/_hq/developer/': typeof HqDeveloperIndexRoute
+  '/_hq/finance/': typeof HqFinanceIndexRoute
+  '/_hq/marketing/': typeof HqMarketingIndexRoute
+  '/_hq/office/': typeof HqOfficeIndexRoute
+  '/_hq/products/': typeof HqProductsIndexRoute
+  '/_hq/projects/': typeof HqProjectsIndexRoute
+  '/_hq/security/': typeof HqSecurityIndexRoute
+  '/_hq/sms/': typeof HqSmsIndexRoute
+  '/_hq/staff/': typeof HqStaffIndexRoute
+  '/_hq/subscriptions/': typeof HqSubscriptionsIndexRoute
+  '/_hq/support/': typeof HqSupportIndexRoute
+  '/_hq/vault/': typeof HqVaultIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/clients/$id'
+    | '/ai/'
+    | '/clients/'
+    | '/developer/'
+    | '/finance/'
+    | '/marketing/'
+    | '/office/'
+    | '/products/'
+    | '/projects/'
+    | '/security/'
+    | '/sms/'
+    | '/staff/'
+    | '/subscriptions/'
+    | '/support/'
+    | '/vault/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/clients/$id'
+    | '/ai'
+    | '/clients'
+    | '/developer'
+    | '/finance'
+    | '/marketing'
+    | '/office'
+    | '/products'
+    | '/projects'
+    | '/security'
+    | '/sms'
+    | '/staff'
+    | '/subscriptions'
+    | '/support'
+    | '/vault'
+  id:
+    | '__root__'
+    | '/_hq'
+    | '/_hq/'
+    | '/_hq/clients/$id'
+    | '/_hq/ai/'
+    | '/_hq/clients/'
+    | '/_hq/developer/'
+    | '/_hq/finance/'
+    | '/_hq/marketing/'
+    | '/_hq/office/'
+    | '/_hq/products/'
+    | '/_hq/projects/'
+    | '/_hq/security/'
+    | '/_hq/sms/'
+    | '/_hq/staff/'
+    | '/_hq/subscriptions/'
+    | '/_hq/support/'
+    | '/_hq/vault/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
+  HqRoute: typeof HqRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
+    '/_hq': {
+      id: '/_hq'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof HqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_hq/': {
+      id: '/_hq/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof HqIndexRouteImport
+      parentRoute: typeof HqRoute
+    }
+    '/_hq/vault/': {
+      id: '/_hq/vault/'
+      path: '/vault'
+      fullPath: '/vault/'
+      preLoaderRoute: typeof HqVaultIndexRouteImport
+      parentRoute: typeof HqRoute
+    }
+    '/_hq/support/': {
+      id: '/_hq/support/'
+      path: '/support'
+      fullPath: '/support/'
+      preLoaderRoute: typeof HqSupportIndexRouteImport
+      parentRoute: typeof HqRoute
+    }
+    '/_hq/subscriptions/': {
+      id: '/_hq/subscriptions/'
+      path: '/subscriptions'
+      fullPath: '/subscriptions/'
+      preLoaderRoute: typeof HqSubscriptionsIndexRouteImport
+      parentRoute: typeof HqRoute
+    }
+    '/_hq/staff/': {
+      id: '/_hq/staff/'
+      path: '/staff'
+      fullPath: '/staff/'
+      preLoaderRoute: typeof HqStaffIndexRouteImport
+      parentRoute: typeof HqRoute
+    }
+    '/_hq/sms/': {
+      id: '/_hq/sms/'
+      path: '/sms'
+      fullPath: '/sms/'
+      preLoaderRoute: typeof HqSmsIndexRouteImport
+      parentRoute: typeof HqRoute
+    }
+    '/_hq/security/': {
+      id: '/_hq/security/'
+      path: '/security'
+      fullPath: '/security/'
+      preLoaderRoute: typeof HqSecurityIndexRouteImport
+      parentRoute: typeof HqRoute
+    }
+    '/_hq/projects/': {
+      id: '/_hq/projects/'
+      path: '/projects'
+      fullPath: '/projects/'
+      preLoaderRoute: typeof HqProjectsIndexRouteImport
+      parentRoute: typeof HqRoute
+    }
+    '/_hq/products/': {
+      id: '/_hq/products/'
+      path: '/products'
+      fullPath: '/products/'
+      preLoaderRoute: typeof HqProductsIndexRouteImport
+      parentRoute: typeof HqRoute
+    }
+    '/_hq/office/': {
+      id: '/_hq/office/'
+      path: '/office'
+      fullPath: '/office/'
+      preLoaderRoute: typeof HqOfficeIndexRouteImport
+      parentRoute: typeof HqRoute
+    }
+    '/_hq/marketing/': {
+      id: '/_hq/marketing/'
+      path: '/marketing'
+      fullPath: '/marketing/'
+      preLoaderRoute: typeof HqMarketingIndexRouteImport
+      parentRoute: typeof HqRoute
+    }
+    '/_hq/finance/': {
+      id: '/_hq/finance/'
+      path: '/finance'
+      fullPath: '/finance/'
+      preLoaderRoute: typeof HqFinanceIndexRouteImport
+      parentRoute: typeof HqRoute
+    }
+    '/_hq/developer/': {
+      id: '/_hq/developer/'
+      path: '/developer'
+      fullPath: '/developer/'
+      preLoaderRoute: typeof HqDeveloperIndexRouteImport
+      parentRoute: typeof HqRoute
+    }
+    '/_hq/clients/': {
+      id: '/_hq/clients/'
+      path: '/clients'
+      fullPath: '/clients/'
+      preLoaderRoute: typeof HqClientsIndexRouteImport
+      parentRoute: typeof HqRoute
+    }
+    '/_hq/ai/': {
+      id: '/_hq/ai/'
+      path: '/ai'
+      fullPath: '/ai/'
+      preLoaderRoute: typeof HqAiIndexRouteImport
+      parentRoute: typeof HqRoute
+    }
+    '/_hq/clients/$id': {
+      id: '/_hq/clients/$id'
+      path: '/clients/$id'
+      fullPath: '/clients/$id'
+      preLoaderRoute: typeof HqClientsIdRouteImport
+      parentRoute: typeof HqRoute
     }
   }
 }
 
+interface HqRouteChildren {
+  HqIndexRoute: typeof HqIndexRoute
+  HqClientsIdRoute: typeof HqClientsIdRoute
+  HqAiIndexRoute: typeof HqAiIndexRoute
+  HqClientsIndexRoute: typeof HqClientsIndexRoute
+  HqDeveloperIndexRoute: typeof HqDeveloperIndexRoute
+  HqFinanceIndexRoute: typeof HqFinanceIndexRoute
+  HqMarketingIndexRoute: typeof HqMarketingIndexRoute
+  HqOfficeIndexRoute: typeof HqOfficeIndexRoute
+  HqProductsIndexRoute: typeof HqProductsIndexRoute
+  HqProjectsIndexRoute: typeof HqProjectsIndexRoute
+  HqSecurityIndexRoute: typeof HqSecurityIndexRoute
+  HqSmsIndexRoute: typeof HqSmsIndexRoute
+  HqStaffIndexRoute: typeof HqStaffIndexRoute
+  HqSubscriptionsIndexRoute: typeof HqSubscriptionsIndexRoute
+  HqSupportIndexRoute: typeof HqSupportIndexRoute
+  HqVaultIndexRoute: typeof HqVaultIndexRoute
+}
+
+const HqRouteChildren: HqRouteChildren = {
+  HqIndexRoute: HqIndexRoute,
+  HqClientsIdRoute: HqClientsIdRoute,
+  HqAiIndexRoute: HqAiIndexRoute,
+  HqClientsIndexRoute: HqClientsIndexRoute,
+  HqDeveloperIndexRoute: HqDeveloperIndexRoute,
+  HqFinanceIndexRoute: HqFinanceIndexRoute,
+  HqMarketingIndexRoute: HqMarketingIndexRoute,
+  HqOfficeIndexRoute: HqOfficeIndexRoute,
+  HqProductsIndexRoute: HqProductsIndexRoute,
+  HqProjectsIndexRoute: HqProjectsIndexRoute,
+  HqSecurityIndexRoute: HqSecurityIndexRoute,
+  HqSmsIndexRoute: HqSmsIndexRoute,
+  HqStaffIndexRoute: HqStaffIndexRoute,
+  HqSubscriptionsIndexRoute: HqSubscriptionsIndexRoute,
+  HqSupportIndexRoute: HqSupportIndexRoute,
+  HqVaultIndexRoute: HqVaultIndexRoute,
+}
+
+const HqRouteWithChildren = HqRoute._addFileChildren(HqRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
+  HqRoute: HqRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
