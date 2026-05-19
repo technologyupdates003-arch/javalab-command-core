@@ -9,51 +9,215 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
+import { Route as HqRouteImport } from './routes/_hq'
+import { Route as HqIndexRouteImport } from './routes/_hq.index'
+import { Route as HqSubscriptionsIndexRouteImport } from './routes/_hq.subscriptions.index'
+import { Route as HqStaffIndexRouteImport } from './routes/_hq.staff.index'
+import { Route as HqProjectsIndexRouteImport } from './routes/_hq.projects.index'
+import { Route as HqProductsIndexRouteImport } from './routes/_hq.products.index'
+import { Route as HqClientsIndexRouteImport } from './routes/_hq.clients.index'
+import { Route as HqClientsIdRouteImport } from './routes/_hq.clients.$id'
 
-const IndexRoute = IndexRouteImport.update({
+const HqRoute = HqRouteImport.update({
+  id: '/_hq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HqIndexRoute = HqIndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => HqRoute,
+} as any)
+const HqSubscriptionsIndexRoute = HqSubscriptionsIndexRouteImport.update({
+  id: '/subscriptions/',
+  path: '/subscriptions/',
+  getParentRoute: () => HqRoute,
+} as any)
+const HqStaffIndexRoute = HqStaffIndexRouteImport.update({
+  id: '/staff/',
+  path: '/staff/',
+  getParentRoute: () => HqRoute,
+} as any)
+const HqProjectsIndexRoute = HqProjectsIndexRouteImport.update({
+  id: '/projects/',
+  path: '/projects/',
+  getParentRoute: () => HqRoute,
+} as any)
+const HqProductsIndexRoute = HqProductsIndexRouteImport.update({
+  id: '/products/',
+  path: '/products/',
+  getParentRoute: () => HqRoute,
+} as any)
+const HqClientsIndexRoute = HqClientsIndexRouteImport.update({
+  id: '/clients/',
+  path: '/clients/',
+  getParentRoute: () => HqRoute,
+} as any)
+const HqClientsIdRoute = HqClientsIdRouteImport.update({
+  id: '/clients/$id',
+  path: '/clients/$id',
+  getParentRoute: () => HqRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
+  '/': typeof HqIndexRoute
+  '/clients/$id': typeof HqClientsIdRoute
+  '/clients/': typeof HqClientsIndexRoute
+  '/products/': typeof HqProductsIndexRoute
+  '/projects/': typeof HqProjectsIndexRoute
+  '/staff/': typeof HqStaffIndexRoute
+  '/subscriptions/': typeof HqSubscriptionsIndexRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
+  '/': typeof HqIndexRoute
+  '/clients/$id': typeof HqClientsIdRoute
+  '/clients': typeof HqClientsIndexRoute
+  '/products': typeof HqProductsIndexRoute
+  '/projects': typeof HqProjectsIndexRoute
+  '/staff': typeof HqStaffIndexRoute
+  '/subscriptions': typeof HqSubscriptionsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
+  '/_hq': typeof HqRouteWithChildren
+  '/_hq/': typeof HqIndexRoute
+  '/_hq/clients/$id': typeof HqClientsIdRoute
+  '/_hq/clients/': typeof HqClientsIndexRoute
+  '/_hq/products/': typeof HqProductsIndexRoute
+  '/_hq/projects/': typeof HqProjectsIndexRoute
+  '/_hq/staff/': typeof HqStaffIndexRoute
+  '/_hq/subscriptions/': typeof HqSubscriptionsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/clients/$id'
+    | '/clients/'
+    | '/products/'
+    | '/projects/'
+    | '/staff/'
+    | '/subscriptions/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/clients/$id'
+    | '/clients'
+    | '/products'
+    | '/projects'
+    | '/staff'
+    | '/subscriptions'
+  id:
+    | '__root__'
+    | '/_hq'
+    | '/_hq/'
+    | '/_hq/clients/$id'
+    | '/_hq/clients/'
+    | '/_hq/products/'
+    | '/_hq/projects/'
+    | '/_hq/staff/'
+    | '/_hq/subscriptions/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
+  HqRoute: typeof HqRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
+    '/_hq': {
+      id: '/_hq'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof HqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_hq/': {
+      id: '/_hq/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof HqIndexRouteImport
+      parentRoute: typeof HqRoute
+    }
+    '/_hq/subscriptions/': {
+      id: '/_hq/subscriptions/'
+      path: '/subscriptions'
+      fullPath: '/subscriptions/'
+      preLoaderRoute: typeof HqSubscriptionsIndexRouteImport
+      parentRoute: typeof HqRoute
+    }
+    '/_hq/staff/': {
+      id: '/_hq/staff/'
+      path: '/staff'
+      fullPath: '/staff/'
+      preLoaderRoute: typeof HqStaffIndexRouteImport
+      parentRoute: typeof HqRoute
+    }
+    '/_hq/projects/': {
+      id: '/_hq/projects/'
+      path: '/projects'
+      fullPath: '/projects/'
+      preLoaderRoute: typeof HqProjectsIndexRouteImport
+      parentRoute: typeof HqRoute
+    }
+    '/_hq/products/': {
+      id: '/_hq/products/'
+      path: '/products'
+      fullPath: '/products/'
+      preLoaderRoute: typeof HqProductsIndexRouteImport
+      parentRoute: typeof HqRoute
+    }
+    '/_hq/clients/': {
+      id: '/_hq/clients/'
+      path: '/clients'
+      fullPath: '/clients/'
+      preLoaderRoute: typeof HqClientsIndexRouteImport
+      parentRoute: typeof HqRoute
+    }
+    '/_hq/clients/$id': {
+      id: '/_hq/clients/$id'
+      path: '/clients/$id'
+      fullPath: '/clients/$id'
+      preLoaderRoute: typeof HqClientsIdRouteImport
+      parentRoute: typeof HqRoute
     }
   }
 }
 
+interface HqRouteChildren {
+  HqIndexRoute: typeof HqIndexRoute
+  HqClientsIdRoute: typeof HqClientsIdRoute
+  HqClientsIndexRoute: typeof HqClientsIndexRoute
+  HqProductsIndexRoute: typeof HqProductsIndexRoute
+  HqProjectsIndexRoute: typeof HqProjectsIndexRoute
+  HqStaffIndexRoute: typeof HqStaffIndexRoute
+  HqSubscriptionsIndexRoute: typeof HqSubscriptionsIndexRoute
+}
+
+const HqRouteChildren: HqRouteChildren = {
+  HqIndexRoute: HqIndexRoute,
+  HqClientsIdRoute: HqClientsIdRoute,
+  HqClientsIndexRoute: HqClientsIndexRoute,
+  HqProductsIndexRoute: HqProductsIndexRoute,
+  HqProjectsIndexRoute: HqProjectsIndexRoute,
+  HqStaffIndexRoute: HqStaffIndexRoute,
+  HqSubscriptionsIndexRoute: HqSubscriptionsIndexRoute,
+}
+
+const HqRouteWithChildren = HqRoute._addFileChildren(HqRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
+  HqRoute: HqRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
