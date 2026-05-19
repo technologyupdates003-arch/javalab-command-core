@@ -9,9 +9,21 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as HqRouteImport } from './routes/hq'
 import { Route as SiteRouteImport } from './routes/_site'
 import { Route as HqIndexRouteImport } from './routes/hq.index'
+import { Route as SiteIndexRouteImport } from './routes/_site.index'
+import { Route as SiteSupportRouteImport } from './routes/_site.support'
+import { Route as SiteServicesRouteImport } from './routes/_site.services'
+import { Route as SiteQuoteRouteImport } from './routes/_site.quote'
+import { Route as SiteProductsRouteImport } from './routes/_site.products'
+import { Route as SitePricingRouteImport } from './routes/_site.pricing'
+import { Route as SitePortfolioRouteImport } from './routes/_site.portfolio'
+import { Route as SiteLoginRouteImport } from './routes/_site.login'
+import { Route as SiteContactRouteImport } from './routes/_site.contact'
+import { Route as SiteCareersRouteImport } from './routes/_site.careers'
+import { Route as SiteBlogRouteImport } from './routes/_site.blog'
 import { Route as HqVaultIndexRouteImport } from './routes/hq.vault.index'
 import { Route as HqSupportIndexRouteImport } from './routes/hq.support.index'
 import { Route as HqSubscriptionsIndexRouteImport } from './routes/hq.subscriptions.index'
@@ -28,6 +40,11 @@ import { Route as HqClientsIndexRouteImport } from './routes/hq.clients.index'
 import { Route as HqAiIndexRouteImport } from './routes/hq.ai.index'
 import { Route as HqClientsIdRouteImport } from './routes/hq.clients.$id'
 
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const HqRoute = HqRouteImport.update({
   id: '/hq',
   path: '/hq',
@@ -41,6 +58,61 @@ const HqIndexRoute = HqIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => HqRoute,
+} as any)
+const SiteIndexRoute = SiteIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => SiteRoute,
+} as any)
+const SiteSupportRoute = SiteSupportRouteImport.update({
+  id: '/support',
+  path: '/support',
+  getParentRoute: () => SiteRoute,
+} as any)
+const SiteServicesRoute = SiteServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
+  getParentRoute: () => SiteRoute,
+} as any)
+const SiteQuoteRoute = SiteQuoteRouteImport.update({
+  id: '/quote',
+  path: '/quote',
+  getParentRoute: () => SiteRoute,
+} as any)
+const SiteProductsRoute = SiteProductsRouteImport.update({
+  id: '/products',
+  path: '/products',
+  getParentRoute: () => SiteRoute,
+} as any)
+const SitePricingRoute = SitePricingRouteImport.update({
+  id: '/pricing',
+  path: '/pricing',
+  getParentRoute: () => SiteRoute,
+} as any)
+const SitePortfolioRoute = SitePortfolioRouteImport.update({
+  id: '/portfolio',
+  path: '/portfolio',
+  getParentRoute: () => SiteRoute,
+} as any)
+const SiteLoginRoute = SiteLoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => SiteRoute,
+} as any)
+const SiteContactRoute = SiteContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => SiteRoute,
+} as any)
+const SiteCareersRoute = SiteCareersRouteImport.update({
+  id: '/careers',
+  path: '/careers',
+  getParentRoute: () => SiteRoute,
+} as any)
+const SiteBlogRoute = SiteBlogRouteImport.update({
+  id: '/blog',
+  path: '/blog',
+  getParentRoute: () => SiteRoute,
 } as any)
 const HqVaultIndexRoute = HqVaultIndexRouteImport.update({
   id: '/vault/',
@@ -119,8 +191,19 @@ const HqClientsIdRoute = HqClientsIdRouteImport.update({
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof SiteRoute
+  '/': typeof SiteIndexRoute
   '/hq': typeof HqRouteWithChildren
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/blog': typeof SiteBlogRoute
+  '/careers': typeof SiteCareersRoute
+  '/contact': typeof SiteContactRoute
+  '/login': typeof SiteLoginRoute
+  '/portfolio': typeof SitePortfolioRoute
+  '/pricing': typeof SitePricingRoute
+  '/products': typeof SiteProductsRoute
+  '/quote': typeof SiteQuoteRoute
+  '/services': typeof SiteServicesRoute
+  '/support': typeof SiteSupportRoute
   '/hq/': typeof HqIndexRoute
   '/hq/clients/$id': typeof HqClientsIdRoute
   '/hq/ai/': typeof HqAiIndexRoute
@@ -139,7 +222,18 @@ export interface FileRoutesByFullPath {
   '/hq/vault/': typeof HqVaultIndexRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof SiteRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/blog': typeof SiteBlogRoute
+  '/careers': typeof SiteCareersRoute
+  '/contact': typeof SiteContactRoute
+  '/login': typeof SiteLoginRoute
+  '/portfolio': typeof SitePortfolioRoute
+  '/pricing': typeof SitePricingRoute
+  '/products': typeof SiteProductsRoute
+  '/quote': typeof SiteQuoteRoute
+  '/services': typeof SiteServicesRoute
+  '/support': typeof SiteSupportRoute
+  '/': typeof SiteIndexRoute
   '/hq': typeof HqIndexRoute
   '/hq/clients/$id': typeof HqClientsIdRoute
   '/hq/ai': typeof HqAiIndexRoute
@@ -159,8 +253,20 @@ export interface FileRoutesByTo {
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/_site': typeof SiteRoute
+  '/_site': typeof SiteRouteWithChildren
   '/hq': typeof HqRouteWithChildren
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/_site/blog': typeof SiteBlogRoute
+  '/_site/careers': typeof SiteCareersRoute
+  '/_site/contact': typeof SiteContactRoute
+  '/_site/login': typeof SiteLoginRoute
+  '/_site/portfolio': typeof SitePortfolioRoute
+  '/_site/pricing': typeof SitePricingRoute
+  '/_site/products': typeof SiteProductsRoute
+  '/_site/quote': typeof SiteQuoteRoute
+  '/_site/services': typeof SiteServicesRoute
+  '/_site/support': typeof SiteSupportRoute
+  '/_site/': typeof SiteIndexRoute
   '/hq/': typeof HqIndexRoute
   '/hq/clients/$id': typeof HqClientsIdRoute
   '/hq/ai/': typeof HqAiIndexRoute
@@ -183,6 +289,17 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/hq'
+    | '/sitemap.xml'
+    | '/blog'
+    | '/careers'
+    | '/contact'
+    | '/login'
+    | '/portfolio'
+    | '/pricing'
+    | '/products'
+    | '/quote'
+    | '/services'
+    | '/support'
     | '/hq/'
     | '/hq/clients/$id'
     | '/hq/ai/'
@@ -201,6 +318,17 @@ export interface FileRouteTypes {
     | '/hq/vault/'
   fileRoutesByTo: FileRoutesByTo
   to:
+    | '/sitemap.xml'
+    | '/blog'
+    | '/careers'
+    | '/contact'
+    | '/login'
+    | '/portfolio'
+    | '/pricing'
+    | '/products'
+    | '/quote'
+    | '/services'
+    | '/support'
     | '/'
     | '/hq'
     | '/hq/clients/$id'
@@ -222,6 +350,18 @@ export interface FileRouteTypes {
     | '__root__'
     | '/_site'
     | '/hq'
+    | '/sitemap.xml'
+    | '/_site/blog'
+    | '/_site/careers'
+    | '/_site/contact'
+    | '/_site/login'
+    | '/_site/portfolio'
+    | '/_site/pricing'
+    | '/_site/products'
+    | '/_site/quote'
+    | '/_site/services'
+    | '/_site/support'
+    | '/_site/'
     | '/hq/'
     | '/hq/clients/$id'
     | '/hq/ai/'
@@ -241,12 +381,20 @@ export interface FileRouteTypes {
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  SiteRoute: typeof SiteRoute
+  SiteRoute: typeof SiteRouteWithChildren
   HqRoute: typeof HqRouteWithChildren
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/hq': {
       id: '/hq'
       path: '/hq'
@@ -267,6 +415,83 @@ declare module '@tanstack/react-router' {
       fullPath: '/hq/'
       preLoaderRoute: typeof HqIndexRouteImport
       parentRoute: typeof HqRoute
+    }
+    '/_site/': {
+      id: '/_site/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof SiteIndexRouteImport
+      parentRoute: typeof SiteRoute
+    }
+    '/_site/support': {
+      id: '/_site/support'
+      path: '/support'
+      fullPath: '/support'
+      preLoaderRoute: typeof SiteSupportRouteImport
+      parentRoute: typeof SiteRoute
+    }
+    '/_site/services': {
+      id: '/_site/services'
+      path: '/services'
+      fullPath: '/services'
+      preLoaderRoute: typeof SiteServicesRouteImport
+      parentRoute: typeof SiteRoute
+    }
+    '/_site/quote': {
+      id: '/_site/quote'
+      path: '/quote'
+      fullPath: '/quote'
+      preLoaderRoute: typeof SiteQuoteRouteImport
+      parentRoute: typeof SiteRoute
+    }
+    '/_site/products': {
+      id: '/_site/products'
+      path: '/products'
+      fullPath: '/products'
+      preLoaderRoute: typeof SiteProductsRouteImport
+      parentRoute: typeof SiteRoute
+    }
+    '/_site/pricing': {
+      id: '/_site/pricing'
+      path: '/pricing'
+      fullPath: '/pricing'
+      preLoaderRoute: typeof SitePricingRouteImport
+      parentRoute: typeof SiteRoute
+    }
+    '/_site/portfolio': {
+      id: '/_site/portfolio'
+      path: '/portfolio'
+      fullPath: '/portfolio'
+      preLoaderRoute: typeof SitePortfolioRouteImport
+      parentRoute: typeof SiteRoute
+    }
+    '/_site/login': {
+      id: '/_site/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof SiteLoginRouteImport
+      parentRoute: typeof SiteRoute
+    }
+    '/_site/contact': {
+      id: '/_site/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof SiteContactRouteImport
+      parentRoute: typeof SiteRoute
+    }
+    '/_site/careers': {
+      id: '/_site/careers'
+      path: '/careers'
+      fullPath: '/careers'
+      preLoaderRoute: typeof SiteCareersRouteImport
+      parentRoute: typeof SiteRoute
+    }
+    '/_site/blog': {
+      id: '/_site/blog'
+      path: '/blog'
+      fullPath: '/blog'
+      preLoaderRoute: typeof SiteBlogRouteImport
+      parentRoute: typeof SiteRoute
     }
     '/hq/vault/': {
       id: '/hq/vault/'
@@ -376,6 +601,36 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface SiteRouteChildren {
+  SiteBlogRoute: typeof SiteBlogRoute
+  SiteCareersRoute: typeof SiteCareersRoute
+  SiteContactRoute: typeof SiteContactRoute
+  SiteLoginRoute: typeof SiteLoginRoute
+  SitePortfolioRoute: typeof SitePortfolioRoute
+  SitePricingRoute: typeof SitePricingRoute
+  SiteProductsRoute: typeof SiteProductsRoute
+  SiteQuoteRoute: typeof SiteQuoteRoute
+  SiteServicesRoute: typeof SiteServicesRoute
+  SiteSupportRoute: typeof SiteSupportRoute
+  SiteIndexRoute: typeof SiteIndexRoute
+}
+
+const SiteRouteChildren: SiteRouteChildren = {
+  SiteBlogRoute: SiteBlogRoute,
+  SiteCareersRoute: SiteCareersRoute,
+  SiteContactRoute: SiteContactRoute,
+  SiteLoginRoute: SiteLoginRoute,
+  SitePortfolioRoute: SitePortfolioRoute,
+  SitePricingRoute: SitePricingRoute,
+  SiteProductsRoute: SiteProductsRoute,
+  SiteQuoteRoute: SiteQuoteRoute,
+  SiteServicesRoute: SiteServicesRoute,
+  SiteSupportRoute: SiteSupportRoute,
+  SiteIndexRoute: SiteIndexRoute,
+}
+
+const SiteRouteWithChildren = SiteRoute._addFileChildren(SiteRouteChildren)
+
 interface HqRouteChildren {
   HqIndexRoute: typeof HqIndexRoute
   HqClientsIdRoute: typeof HqClientsIdRoute
@@ -417,9 +672,20 @@ const HqRouteChildren: HqRouteChildren = {
 const HqRouteWithChildren = HqRoute._addFileChildren(HqRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
-  SiteRoute: SiteRoute,
+  SiteRoute: SiteRouteWithChildren,
   HqRoute: HqRouteWithChildren,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
