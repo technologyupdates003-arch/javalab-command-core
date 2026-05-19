@@ -91,7 +91,7 @@ function ClientsPage() {
                 >
                   <td className="px-4 py-3">
                     <Link
-                      to="/clients/$id"
+                      to="/hq/clients/$id"
                       params={{ id: c.id }}
                       className="flex items-center gap-3"
                     >
