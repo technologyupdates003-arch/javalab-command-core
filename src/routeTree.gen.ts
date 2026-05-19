@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as HqRouteImport } from './routes/hq'
+import { Route as SiteRouteImport } from './routes/_site'
 import { Route as HqIndexRouteImport } from './routes/hq.index'
 import { Route as HqVaultIndexRouteImport } from './routes/hq.vault.index'
 import { Route as HqSupportIndexRouteImport } from './routes/hq.support.index'
@@ -30,6 +31,10 @@ import { Route as HqClientsIdRouteImport } from './routes/hq.clients.$id'
 const HqRoute = HqRouteImport.update({
   id: '/hq',
   path: '/hq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SiteRoute = SiteRouteImport.update({
+  id: '/_site',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HqIndexRoute = HqIndexRouteImport.update({
@@ -114,6 +119,7 @@ const HqClientsIdRoute = HqClientsIdRouteImport.update({
 } as any)
 
 export interface FileRoutesByFullPath {
+  '/': typeof SiteRoute
   '/hq': typeof HqRouteWithChildren
   '/hq/': typeof HqIndexRoute
   '/hq/clients/$id': typeof HqClientsIdRoute
@@ -133,6 +139,7 @@ export interface FileRoutesByFullPath {
   '/hq/vault/': typeof HqVaultIndexRoute
 }
 export interface FileRoutesByTo {
+  '/': typeof SiteRoute
   '/hq': typeof HqIndexRoute
   '/hq/clients/$id': typeof HqClientsIdRoute
   '/hq/ai': typeof HqAiIndexRoute
@@ -152,6 +159,7 @@ export interface FileRoutesByTo {
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
+  '/_site': typeof SiteRoute
   '/hq': typeof HqRouteWithChildren
   '/hq/': typeof HqIndexRoute
   '/hq/clients/$id': typeof HqClientsIdRoute
@@ -173,6 +181,7 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
+    | '/'
     | '/hq'
     | '/hq/'
     | '/hq/clients/$id'
@@ -192,6 +201,7 @@ export interface FileRouteTypes {
     | '/hq/vault/'
   fileRoutesByTo: FileRoutesByTo
   to:
+    | '/'
     | '/hq'
     | '/hq/clients/$id'
     | '/hq/ai'
@@ -210,6 +220,7 @@ export interface FileRouteTypes {
     | '/hq/vault'
   id:
     | '__root__'
+    | '/_site'
     | '/hq'
     | '/hq/'
     | '/hq/clients/$id'
@@ -230,6 +241,7 @@ export interface FileRouteTypes {
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
+  SiteRoute: typeof SiteRoute
   HqRoute: typeof HqRouteWithChildren
 }
 
@@ -240,6 +252,13 @@ declare module '@tanstack/react-router' {
       path: '/hq'
       fullPath: '/hq'
       preLoaderRoute: typeof HqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_site': {
+      id: '/_site'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof SiteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/hq/': {
@@ -398,8 +417,19 @@ const HqRouteChildren: HqRouteChildren = {
 const HqRouteWithChildren = HqRoute._addFileChildren(HqRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
+  SiteRoute: SiteRoute,
   HqRoute: HqRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
