@@ -95,7 +95,7 @@ function ClientDetail() {
         <GlassCard className="lg:col-span-2">
           <SectionHeader title="Subscriptions" subtitle="Active products & plans" />
           <div className="mt-4 space-y-2">
-            {client.products.map((p) => (
+            {client.products.map((p: string) => (
               <div
                 key={p}
                 className="flex items-center justify-between rounded-xl border border-glass-border bg-background/40 px-4 py-3"
