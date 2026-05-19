@@ -76,7 +76,7 @@ function ClientDetail() {
       </div>
 
       <div className="mb-5 flex flex-wrap gap-1 border-b border-glass-border">
-        {tabs.map((t, i) => (
+        {tabs.map((t: string, i: number) => (
           <button
             key={t}
             className={
