@@ -17,7 +17,7 @@ import {
 } from "@/components/hq/primitives";
 import { clients } from "@/lib/mock-data";
 
-export const Route = createFileRoute("/_hq/clients/$id")({
+export const Route = createFileRoute("/hq/clients/$id")({
   component: ClientDetail,
   loader: ({ params }) => {
     const client = clients.find((c) => c.id === params.id);

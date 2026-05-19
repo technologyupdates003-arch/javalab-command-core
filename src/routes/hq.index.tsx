@@ -36,7 +36,7 @@ import {
   serverHealth,
 } from "@/lib/mock-data";
 
-export const Route = createFileRoute("/_hq/")({
+export const Route = createFileRoute("/hq/")({
   component: Dashboard,
   head: () => ({ meta: [{ title: "HQ Dashboard — Javalab Command Center" }] }),
 });
