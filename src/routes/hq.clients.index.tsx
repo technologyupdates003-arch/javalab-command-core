@@ -8,7 +8,7 @@ import {
 } from "@/components/hq/primitives";
 import { clients } from "@/lib/mock-data";
 
-export const Route = createFileRoute("/_hq/clients/")({
+export const Route = createFileRoute("/hq/clients/")({
   component: ClientsPage,
   head: () => ({ meta: [{ title: "Clients — Javalab HQ" }] }),
 });
@@ -91,7 +91,7 @@ function ClientsPage() {
                 >
                   <td className="px-4 py-3">
                     <Link
-                      to="/clients/$id"
+                      to="/hq/clients/$id"
                       params={{ id: c.id }}
                       className="flex items-center gap-3"
                     >

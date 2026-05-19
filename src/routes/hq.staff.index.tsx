@@ -9,7 +9,7 @@ import {
 } from "@/components/hq/primitives";
 import { departments, staff } from "@/lib/mock-data";
 
-export const Route = createFileRoute("/_hq/staff/")({
+export const Route = createFileRoute("/hq/staff/")({
   component: StaffPage,
   head: () => ({ meta: [{ title: "Staff & Departments — Javalab HQ" }] }),
 });

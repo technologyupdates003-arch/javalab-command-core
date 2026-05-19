@@ -9,32 +9,110 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as HqRouteImport } from './routes/_hq'
-import { Route as HqIndexRouteImport } from './routes/_hq.index'
-import { Route as HqVaultIndexRouteImport } from './routes/_hq.vault.index'
-import { Route as HqSupportIndexRouteImport } from './routes/_hq.support.index'
-import { Route as HqSubscriptionsIndexRouteImport } from './routes/_hq.subscriptions.index'
-import { Route as HqStaffIndexRouteImport } from './routes/_hq.staff.index'
-import { Route as HqSmsIndexRouteImport } from './routes/_hq.sms.index'
-import { Route as HqSecurityIndexRouteImport } from './routes/_hq.security.index'
-import { Route as HqProjectsIndexRouteImport } from './routes/_hq.projects.index'
-import { Route as HqProductsIndexRouteImport } from './routes/_hq.products.index'
-import { Route as HqOfficeIndexRouteImport } from './routes/_hq.office.index'
-import { Route as HqMarketingIndexRouteImport } from './routes/_hq.marketing.index'
-import { Route as HqFinanceIndexRouteImport } from './routes/_hq.finance.index'
-import { Route as HqDeveloperIndexRouteImport } from './routes/_hq.developer.index'
-import { Route as HqClientsIndexRouteImport } from './routes/_hq.clients.index'
-import { Route as HqAiIndexRouteImport } from './routes/_hq.ai.index'
-import { Route as HqClientsIdRouteImport } from './routes/_hq.clients.$id'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as HqRouteImport } from './routes/hq'
+import { Route as SiteRouteImport } from './routes/_site'
+import { Route as HqIndexRouteImport } from './routes/hq.index'
+import { Route as SiteIndexRouteImport } from './routes/_site.index'
+import { Route as SiteSupportRouteImport } from './routes/_site.support'
+import { Route as SiteServicesRouteImport } from './routes/_site.services'
+import { Route as SiteQuoteRouteImport } from './routes/_site.quote'
+import { Route as SiteProductsRouteImport } from './routes/_site.products'
+import { Route as SitePricingRouteImport } from './routes/_site.pricing'
+import { Route as SitePortfolioRouteImport } from './routes/_site.portfolio'
+import { Route as SiteLoginRouteImport } from './routes/_site.login'
+import { Route as SiteContactRouteImport } from './routes/_site.contact'
+import { Route as SiteCareersRouteImport } from './routes/_site.careers'
+import { Route as SiteBlogRouteImport } from './routes/_site.blog'
+import { Route as HqVaultIndexRouteImport } from './routes/hq.vault.index'
+import { Route as HqSupportIndexRouteImport } from './routes/hq.support.index'
+import { Route as HqSubscriptionsIndexRouteImport } from './routes/hq.subscriptions.index'
+import { Route as HqStaffIndexRouteImport } from './routes/hq.staff.index'
+import { Route as HqSmsIndexRouteImport } from './routes/hq.sms.index'
+import { Route as HqSecurityIndexRouteImport } from './routes/hq.security.index'
+import { Route as HqProjectsIndexRouteImport } from './routes/hq.projects.index'
+import { Route as HqProductsIndexRouteImport } from './routes/hq.products.index'
+import { Route as HqOfficeIndexRouteImport } from './routes/hq.office.index'
+import { Route as HqMarketingIndexRouteImport } from './routes/hq.marketing.index'
+import { Route as HqFinanceIndexRouteImport } from './routes/hq.finance.index'
+import { Route as HqDeveloperIndexRouteImport } from './routes/hq.developer.index'
+import { Route as HqClientsIndexRouteImport } from './routes/hq.clients.index'
+import { Route as HqAiIndexRouteImport } from './routes/hq.ai.index'
+import { Route as HqClientsIdRouteImport } from './routes/hq.clients.$id'
 
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const HqRoute = HqRouteImport.update({
-  id: '/_hq',
+  id: '/hq',
+  path: '/hq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SiteRoute = SiteRouteImport.update({
+  id: '/_site',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HqIndexRoute = HqIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => HqRoute,
+} as any)
+const SiteIndexRoute = SiteIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => SiteRoute,
+} as any)
+const SiteSupportRoute = SiteSupportRouteImport.update({
+  id: '/support',
+  path: '/support',
+  getParentRoute: () => SiteRoute,
+} as any)
+const SiteServicesRoute = SiteServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
+  getParentRoute: () => SiteRoute,
+} as any)
+const SiteQuoteRoute = SiteQuoteRouteImport.update({
+  id: '/quote',
+  path: '/quote',
+  getParentRoute: () => SiteRoute,
+} as any)
+const SiteProductsRoute = SiteProductsRouteImport.update({
+  id: '/products',
+  path: '/products',
+  getParentRoute: () => SiteRoute,
+} as any)
+const SitePricingRoute = SitePricingRouteImport.update({
+  id: '/pricing',
+  path: '/pricing',
+  getParentRoute: () => SiteRoute,
+} as any)
+const SitePortfolioRoute = SitePortfolioRouteImport.update({
+  id: '/portfolio',
+  path: '/portfolio',
+  getParentRoute: () => SiteRoute,
+} as any)
+const SiteLoginRoute = SiteLoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => SiteRoute,
+} as any)
+const SiteContactRoute = SiteContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => SiteRoute,
+} as any)
+const SiteCareersRoute = SiteCareersRouteImport.update({
+  id: '/careers',
+  path: '/careers',
+  getParentRoute: () => SiteRoute,
+} as any)
+const SiteBlogRoute = SiteBlogRouteImport.update({
+  id: '/blog',
+  path: '/blog',
+  getParentRoute: () => SiteRoute,
 } as any)
 const HqVaultIndexRoute = HqVaultIndexRouteImport.update({
   id: '/vault/',
@@ -113,246 +191,445 @@ const HqClientsIdRoute = HqClientsIdRouteImport.update({
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof HqIndexRoute
-  '/clients/$id': typeof HqClientsIdRoute
-  '/ai/': typeof HqAiIndexRoute
-  '/clients/': typeof HqClientsIndexRoute
-  '/developer/': typeof HqDeveloperIndexRoute
-  '/finance/': typeof HqFinanceIndexRoute
-  '/marketing/': typeof HqMarketingIndexRoute
-  '/office/': typeof HqOfficeIndexRoute
-  '/products/': typeof HqProductsIndexRoute
-  '/projects/': typeof HqProjectsIndexRoute
-  '/security/': typeof HqSecurityIndexRoute
-  '/sms/': typeof HqSmsIndexRoute
-  '/staff/': typeof HqStaffIndexRoute
-  '/subscriptions/': typeof HqSubscriptionsIndexRoute
-  '/support/': typeof HqSupportIndexRoute
-  '/vault/': typeof HqVaultIndexRoute
+  '/': typeof SiteIndexRoute
+  '/hq': typeof HqRouteWithChildren
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/blog': typeof SiteBlogRoute
+  '/careers': typeof SiteCareersRoute
+  '/contact': typeof SiteContactRoute
+  '/login': typeof SiteLoginRoute
+  '/portfolio': typeof SitePortfolioRoute
+  '/pricing': typeof SitePricingRoute
+  '/products': typeof SiteProductsRoute
+  '/quote': typeof SiteQuoteRoute
+  '/services': typeof SiteServicesRoute
+  '/support': typeof SiteSupportRoute
+  '/hq/': typeof HqIndexRoute
+  '/hq/clients/$id': typeof HqClientsIdRoute
+  '/hq/ai/': typeof HqAiIndexRoute
+  '/hq/clients/': typeof HqClientsIndexRoute
+  '/hq/developer/': typeof HqDeveloperIndexRoute
+  '/hq/finance/': typeof HqFinanceIndexRoute
+  '/hq/marketing/': typeof HqMarketingIndexRoute
+  '/hq/office/': typeof HqOfficeIndexRoute
+  '/hq/products/': typeof HqProductsIndexRoute
+  '/hq/projects/': typeof HqProjectsIndexRoute
+  '/hq/security/': typeof HqSecurityIndexRoute
+  '/hq/sms/': typeof HqSmsIndexRoute
+  '/hq/staff/': typeof HqStaffIndexRoute
+  '/hq/subscriptions/': typeof HqSubscriptionsIndexRoute
+  '/hq/support/': typeof HqSupportIndexRoute
+  '/hq/vault/': typeof HqVaultIndexRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof HqIndexRoute
-  '/clients/$id': typeof HqClientsIdRoute
-  '/ai': typeof HqAiIndexRoute
-  '/clients': typeof HqClientsIndexRoute
-  '/developer': typeof HqDeveloperIndexRoute
-  '/finance': typeof HqFinanceIndexRoute
-  '/marketing': typeof HqMarketingIndexRoute
-  '/office': typeof HqOfficeIndexRoute
-  '/products': typeof HqProductsIndexRoute
-  '/projects': typeof HqProjectsIndexRoute
-  '/security': typeof HqSecurityIndexRoute
-  '/sms': typeof HqSmsIndexRoute
-  '/staff': typeof HqStaffIndexRoute
-  '/subscriptions': typeof HqSubscriptionsIndexRoute
-  '/support': typeof HqSupportIndexRoute
-  '/vault': typeof HqVaultIndexRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/blog': typeof SiteBlogRoute
+  '/careers': typeof SiteCareersRoute
+  '/contact': typeof SiteContactRoute
+  '/login': typeof SiteLoginRoute
+  '/portfolio': typeof SitePortfolioRoute
+  '/pricing': typeof SitePricingRoute
+  '/products': typeof SiteProductsRoute
+  '/quote': typeof SiteQuoteRoute
+  '/services': typeof SiteServicesRoute
+  '/support': typeof SiteSupportRoute
+  '/': typeof SiteIndexRoute
+  '/hq': typeof HqIndexRoute
+  '/hq/clients/$id': typeof HqClientsIdRoute
+  '/hq/ai': typeof HqAiIndexRoute
+  '/hq/clients': typeof HqClientsIndexRoute
+  '/hq/developer': typeof HqDeveloperIndexRoute
+  '/hq/finance': typeof HqFinanceIndexRoute
+  '/hq/marketing': typeof HqMarketingIndexRoute
+  '/hq/office': typeof HqOfficeIndexRoute
+  '/hq/products': typeof HqProductsIndexRoute
+  '/hq/projects': typeof HqProjectsIndexRoute
+  '/hq/security': typeof HqSecurityIndexRoute
+  '/hq/sms': typeof HqSmsIndexRoute
+  '/hq/staff': typeof HqStaffIndexRoute
+  '/hq/subscriptions': typeof HqSubscriptionsIndexRoute
+  '/hq/support': typeof HqSupportIndexRoute
+  '/hq/vault': typeof HqVaultIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/_hq': typeof HqRouteWithChildren
-  '/_hq/': typeof HqIndexRoute
-  '/_hq/clients/$id': typeof HqClientsIdRoute
-  '/_hq/ai/': typeof HqAiIndexRoute
-  '/_hq/clients/': typeof HqClientsIndexRoute
-  '/_hq/developer/': typeof HqDeveloperIndexRoute
-  '/_hq/finance/': typeof HqFinanceIndexRoute
-  '/_hq/marketing/': typeof HqMarketingIndexRoute
-  '/_hq/office/': typeof HqOfficeIndexRoute
-  '/_hq/products/': typeof HqProductsIndexRoute
-  '/_hq/projects/': typeof HqProjectsIndexRoute
-  '/_hq/security/': typeof HqSecurityIndexRoute
-  '/_hq/sms/': typeof HqSmsIndexRoute
-  '/_hq/staff/': typeof HqStaffIndexRoute
-  '/_hq/subscriptions/': typeof HqSubscriptionsIndexRoute
-  '/_hq/support/': typeof HqSupportIndexRoute
-  '/_hq/vault/': typeof HqVaultIndexRoute
+  '/_site': typeof SiteRouteWithChildren
+  '/hq': typeof HqRouteWithChildren
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/_site/blog': typeof SiteBlogRoute
+  '/_site/careers': typeof SiteCareersRoute
+  '/_site/contact': typeof SiteContactRoute
+  '/_site/login': typeof SiteLoginRoute
+  '/_site/portfolio': typeof SitePortfolioRoute
+  '/_site/pricing': typeof SitePricingRoute
+  '/_site/products': typeof SiteProductsRoute
+  '/_site/quote': typeof SiteQuoteRoute
+  '/_site/services': typeof SiteServicesRoute
+  '/_site/support': typeof SiteSupportRoute
+  '/_site/': typeof SiteIndexRoute
+  '/hq/': typeof HqIndexRoute
+  '/hq/clients/$id': typeof HqClientsIdRoute
+  '/hq/ai/': typeof HqAiIndexRoute
+  '/hq/clients/': typeof HqClientsIndexRoute
+  '/hq/developer/': typeof HqDeveloperIndexRoute
+  '/hq/finance/': typeof HqFinanceIndexRoute
+  '/hq/marketing/': typeof HqMarketingIndexRoute
+  '/hq/office/': typeof HqOfficeIndexRoute
+  '/hq/products/': typeof HqProductsIndexRoute
+  '/hq/projects/': typeof HqProjectsIndexRoute
+  '/hq/security/': typeof HqSecurityIndexRoute
+  '/hq/sms/': typeof HqSmsIndexRoute
+  '/hq/staff/': typeof HqStaffIndexRoute
+  '/hq/subscriptions/': typeof HqSubscriptionsIndexRoute
+  '/hq/support/': typeof HqSupportIndexRoute
+  '/hq/vault/': typeof HqVaultIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/clients/$id'
-    | '/ai/'
-    | '/clients/'
-    | '/developer/'
-    | '/finance/'
-    | '/marketing/'
-    | '/office/'
-    | '/products/'
-    | '/projects/'
-    | '/security/'
-    | '/sms/'
-    | '/staff/'
-    | '/subscriptions/'
-    | '/support/'
-    | '/vault/'
+    | '/hq'
+    | '/sitemap.xml'
+    | '/blog'
+    | '/careers'
+    | '/contact'
+    | '/login'
+    | '/portfolio'
+    | '/pricing'
+    | '/products'
+    | '/quote'
+    | '/services'
+    | '/support'
+    | '/hq/'
+    | '/hq/clients/$id'
+    | '/hq/ai/'
+    | '/hq/clients/'
+    | '/hq/developer/'
+    | '/hq/finance/'
+    | '/hq/marketing/'
+    | '/hq/office/'
+    | '/hq/products/'
+    | '/hq/projects/'
+    | '/hq/security/'
+    | '/hq/sms/'
+    | '/hq/staff/'
+    | '/hq/subscriptions/'
+    | '/hq/support/'
+    | '/hq/vault/'
   fileRoutesByTo: FileRoutesByTo
   to:
-    | '/'
-    | '/clients/$id'
-    | '/ai'
-    | '/clients'
-    | '/developer'
-    | '/finance'
-    | '/marketing'
-    | '/office'
+    | '/sitemap.xml'
+    | '/blog'
+    | '/careers'
+    | '/contact'
+    | '/login'
+    | '/portfolio'
+    | '/pricing'
     | '/products'
-    | '/projects'
-    | '/security'
-    | '/sms'
-    | '/staff'
-    | '/subscriptions'
+    | '/quote'
+    | '/services'
     | '/support'
-    | '/vault'
+    | '/'
+    | '/hq'
+    | '/hq/clients/$id'
+    | '/hq/ai'
+    | '/hq/clients'
+    | '/hq/developer'
+    | '/hq/finance'
+    | '/hq/marketing'
+    | '/hq/office'
+    | '/hq/products'
+    | '/hq/projects'
+    | '/hq/security'
+    | '/hq/sms'
+    | '/hq/staff'
+    | '/hq/subscriptions'
+    | '/hq/support'
+    | '/hq/vault'
   id:
     | '__root__'
-    | '/_hq'
-    | '/_hq/'
-    | '/_hq/clients/$id'
-    | '/_hq/ai/'
-    | '/_hq/clients/'
-    | '/_hq/developer/'
-    | '/_hq/finance/'
-    | '/_hq/marketing/'
-    | '/_hq/office/'
-    | '/_hq/products/'
-    | '/_hq/projects/'
-    | '/_hq/security/'
-    | '/_hq/sms/'
-    | '/_hq/staff/'
-    | '/_hq/subscriptions/'
-    | '/_hq/support/'
-    | '/_hq/vault/'
+    | '/_site'
+    | '/hq'
+    | '/sitemap.xml'
+    | '/_site/blog'
+    | '/_site/careers'
+    | '/_site/contact'
+    | '/_site/login'
+    | '/_site/portfolio'
+    | '/_site/pricing'
+    | '/_site/products'
+    | '/_site/quote'
+    | '/_site/services'
+    | '/_site/support'
+    | '/_site/'
+    | '/hq/'
+    | '/hq/clients/$id'
+    | '/hq/ai/'
+    | '/hq/clients/'
+    | '/hq/developer/'
+    | '/hq/finance/'
+    | '/hq/marketing/'
+    | '/hq/office/'
+    | '/hq/products/'
+    | '/hq/projects/'
+    | '/hq/security/'
+    | '/hq/sms/'
+    | '/hq/staff/'
+    | '/hq/subscriptions/'
+    | '/hq/support/'
+    | '/hq/vault/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
+  SiteRoute: typeof SiteRouteWithChildren
   HqRoute: typeof HqRouteWithChildren
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/_hq': {
-      id: '/_hq'
-      path: ''
-      fullPath: '/'
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/hq': {
+      id: '/hq'
+      path: '/hq'
+      fullPath: '/hq'
       preLoaderRoute: typeof HqRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_hq/': {
-      id: '/_hq/'
-      path: '/'
+    '/_site': {
+      id: '/_site'
+      path: ''
       fullPath: '/'
+      preLoaderRoute: typeof SiteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/hq/': {
+      id: '/hq/'
+      path: '/'
+      fullPath: '/hq/'
       preLoaderRoute: typeof HqIndexRouteImport
       parentRoute: typeof HqRoute
     }
-    '/_hq/vault/': {
-      id: '/_hq/vault/'
+    '/_site/': {
+      id: '/_site/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof SiteIndexRouteImport
+      parentRoute: typeof SiteRoute
+    }
+    '/_site/support': {
+      id: '/_site/support'
+      path: '/support'
+      fullPath: '/support'
+      preLoaderRoute: typeof SiteSupportRouteImport
+      parentRoute: typeof SiteRoute
+    }
+    '/_site/services': {
+      id: '/_site/services'
+      path: '/services'
+      fullPath: '/services'
+      preLoaderRoute: typeof SiteServicesRouteImport
+      parentRoute: typeof SiteRoute
+    }
+    '/_site/quote': {
+      id: '/_site/quote'
+      path: '/quote'
+      fullPath: '/quote'
+      preLoaderRoute: typeof SiteQuoteRouteImport
+      parentRoute: typeof SiteRoute
+    }
+    '/_site/products': {
+      id: '/_site/products'
+      path: '/products'
+      fullPath: '/products'
+      preLoaderRoute: typeof SiteProductsRouteImport
+      parentRoute: typeof SiteRoute
+    }
+    '/_site/pricing': {
+      id: '/_site/pricing'
+      path: '/pricing'
+      fullPath: '/pricing'
+      preLoaderRoute: typeof SitePricingRouteImport
+      parentRoute: typeof SiteRoute
+    }
+    '/_site/portfolio': {
+      id: '/_site/portfolio'
+      path: '/portfolio'
+      fullPath: '/portfolio'
+      preLoaderRoute: typeof SitePortfolioRouteImport
+      parentRoute: typeof SiteRoute
+    }
+    '/_site/login': {
+      id: '/_site/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof SiteLoginRouteImport
+      parentRoute: typeof SiteRoute
+    }
+    '/_site/contact': {
+      id: '/_site/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof SiteContactRouteImport
+      parentRoute: typeof SiteRoute
+    }
+    '/_site/careers': {
+      id: '/_site/careers'
+      path: '/careers'
+      fullPath: '/careers'
+      preLoaderRoute: typeof SiteCareersRouteImport
+      parentRoute: typeof SiteRoute
+    }
+    '/_site/blog': {
+      id: '/_site/blog'
+      path: '/blog'
+      fullPath: '/blog'
+      preLoaderRoute: typeof SiteBlogRouteImport
+      parentRoute: typeof SiteRoute
+    }
+    '/hq/vault/': {
+      id: '/hq/vault/'
       path: '/vault'
-      fullPath: '/vault/'
+      fullPath: '/hq/vault/'
       preLoaderRoute: typeof HqVaultIndexRouteImport
       parentRoute: typeof HqRoute
     }
-    '/_hq/support/': {
-      id: '/_hq/support/'
+    '/hq/support/': {
+      id: '/hq/support/'
       path: '/support'
-      fullPath: '/support/'
+      fullPath: '/hq/support/'
       preLoaderRoute: typeof HqSupportIndexRouteImport
       parentRoute: typeof HqRoute
     }
-    '/_hq/subscriptions/': {
-      id: '/_hq/subscriptions/'
+    '/hq/subscriptions/': {
+      id: '/hq/subscriptions/'
       path: '/subscriptions'
-      fullPath: '/subscriptions/'
+      fullPath: '/hq/subscriptions/'
       preLoaderRoute: typeof HqSubscriptionsIndexRouteImport
       parentRoute: typeof HqRoute
     }
-    '/_hq/staff/': {
-      id: '/_hq/staff/'
+    '/hq/staff/': {
+      id: '/hq/staff/'
       path: '/staff'
-      fullPath: '/staff/'
+      fullPath: '/hq/staff/'
       preLoaderRoute: typeof HqStaffIndexRouteImport
       parentRoute: typeof HqRoute
     }
-    '/_hq/sms/': {
-      id: '/_hq/sms/'
+    '/hq/sms/': {
+      id: '/hq/sms/'
       path: '/sms'
-      fullPath: '/sms/'
+      fullPath: '/hq/sms/'
       preLoaderRoute: typeof HqSmsIndexRouteImport
       parentRoute: typeof HqRoute
     }
-    '/_hq/security/': {
-      id: '/_hq/security/'
+    '/hq/security/': {
+      id: '/hq/security/'
       path: '/security'
-      fullPath: '/security/'
+      fullPath: '/hq/security/'
       preLoaderRoute: typeof HqSecurityIndexRouteImport
       parentRoute: typeof HqRoute
     }
-    '/_hq/projects/': {
-      id: '/_hq/projects/'
+    '/hq/projects/': {
+      id: '/hq/projects/'
       path: '/projects'
-      fullPath: '/projects/'
+      fullPath: '/hq/projects/'
       preLoaderRoute: typeof HqProjectsIndexRouteImport
       parentRoute: typeof HqRoute
     }
-    '/_hq/products/': {
-      id: '/_hq/products/'
+    '/hq/products/': {
+      id: '/hq/products/'
       path: '/products'
-      fullPath: '/products/'
+      fullPath: '/hq/products/'
       preLoaderRoute: typeof HqProductsIndexRouteImport
       parentRoute: typeof HqRoute
     }
-    '/_hq/office/': {
-      id: '/_hq/office/'
+    '/hq/office/': {
+      id: '/hq/office/'
       path: '/office'
-      fullPath: '/office/'
+      fullPath: '/hq/office/'
       preLoaderRoute: typeof HqOfficeIndexRouteImport
       parentRoute: typeof HqRoute
     }
-    '/_hq/marketing/': {
-      id: '/_hq/marketing/'
+    '/hq/marketing/': {
+      id: '/hq/marketing/'
       path: '/marketing'
-      fullPath: '/marketing/'
+      fullPath: '/hq/marketing/'
       preLoaderRoute: typeof HqMarketingIndexRouteImport
       parentRoute: typeof HqRoute
     }
-    '/_hq/finance/': {
-      id: '/_hq/finance/'
+    '/hq/finance/': {
+      id: '/hq/finance/'
       path: '/finance'
-      fullPath: '/finance/'
+      fullPath: '/hq/finance/'
       preLoaderRoute: typeof HqFinanceIndexRouteImport
       parentRoute: typeof HqRoute
     }
-    '/_hq/developer/': {
-      id: '/_hq/developer/'
+    '/hq/developer/': {
+      id: '/hq/developer/'
       path: '/developer'
-      fullPath: '/developer/'
+      fullPath: '/hq/developer/'
       preLoaderRoute: typeof HqDeveloperIndexRouteImport
       parentRoute: typeof HqRoute
     }
-    '/_hq/clients/': {
-      id: '/_hq/clients/'
+    '/hq/clients/': {
+      id: '/hq/clients/'
       path: '/clients'
-      fullPath: '/clients/'
+      fullPath: '/hq/clients/'
       preLoaderRoute: typeof HqClientsIndexRouteImport
       parentRoute: typeof HqRoute
     }
-    '/_hq/ai/': {
-      id: '/_hq/ai/'
+    '/hq/ai/': {
+      id: '/hq/ai/'
       path: '/ai'
-      fullPath: '/ai/'
+      fullPath: '/hq/ai/'
       preLoaderRoute: typeof HqAiIndexRouteImport
       parentRoute: typeof HqRoute
     }
-    '/_hq/clients/$id': {
-      id: '/_hq/clients/$id'
+    '/hq/clients/$id': {
+      id: '/hq/clients/$id'
       path: '/clients/$id'
-      fullPath: '/clients/$id'
+      fullPath: '/hq/clients/$id'
       preLoaderRoute: typeof HqClientsIdRouteImport
       parentRoute: typeof HqRoute
     }
   }
 }
+
+interface SiteRouteChildren {
+  SiteBlogRoute: typeof SiteBlogRoute
+  SiteCareersRoute: typeof SiteCareersRoute
+  SiteContactRoute: typeof SiteContactRoute
+  SiteLoginRoute: typeof SiteLoginRoute
+  SitePortfolioRoute: typeof SitePortfolioRoute
+  SitePricingRoute: typeof SitePricingRoute
+  SiteProductsRoute: typeof SiteProductsRoute
+  SiteQuoteRoute: typeof SiteQuoteRoute
+  SiteServicesRoute: typeof SiteServicesRoute
+  SiteSupportRoute: typeof SiteSupportRoute
+  SiteIndexRoute: typeof SiteIndexRoute
+}
+
+const SiteRouteChildren: SiteRouteChildren = {
+  SiteBlogRoute: SiteBlogRoute,
+  SiteCareersRoute: SiteCareersRoute,
+  SiteContactRoute: SiteContactRoute,
+  SiteLoginRoute: SiteLoginRoute,
+  SitePortfolioRoute: SitePortfolioRoute,
+  SitePricingRoute: SitePricingRoute,
+  SiteProductsRoute: SiteProductsRoute,
+  SiteQuoteRoute: SiteQuoteRoute,
+  SiteServicesRoute: SiteServicesRoute,
+  SiteSupportRoute: SiteSupportRoute,
+  SiteIndexRoute: SiteIndexRoute,
+}
+
+const SiteRouteWithChildren = SiteRoute._addFileChildren(SiteRouteChildren)
 
 interface HqRouteChildren {
   HqIndexRoute: typeof HqIndexRoute
@@ -395,7 +672,9 @@ const HqRouteChildren: HqRouteChildren = {
 const HqRouteWithChildren = HqRoute._addFileChildren(HqRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
+  SiteRoute: SiteRouteWithChildren,
   HqRoute: HqRouteWithChildren,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

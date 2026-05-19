@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ComingSoon } from "@/components/hq/primitives";
 
-export const Route = createFileRoute("/_hq/sms/")({
+export const Route = createFileRoute("/hq/sms/")({
   component: () => (
     <ComingSoon
       title="Bulk SMS Platform"

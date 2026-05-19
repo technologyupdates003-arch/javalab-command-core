@@ -8,7 +8,7 @@ import {
 } from "@/components/hq/primitives";
 import { clients, failedPayments, plans } from "@/lib/mock-data";
 
-export const Route = createFileRoute("/_hq/subscriptions/")({
+export const Route = createFileRoute("/hq/subscriptions/")({
   component: SubsPage,
   head: () => ({ meta: [{ title: "Subscriptions — Javalab HQ" }] }),
 });

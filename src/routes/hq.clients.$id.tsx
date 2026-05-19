@@ -17,7 +17,7 @@ import {
 } from "@/components/hq/primitives";
 import { clients } from "@/lib/mock-data";
 
-export const Route = createFileRoute("/_hq/clients/$id")({
+export const Route = createFileRoute("/hq/clients/$id")({
   component: ClientDetail,
   loader: ({ params }) => {
     const client = clients.find((c) => c.id === params.id);
@@ -41,7 +41,7 @@ function ClientDetail() {
   return (
     <div>
       <Link
-        to="/clients"
+        to="/hq/clients"
         className="mb-4 inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground"
       >
         <ArrowLeft className="size-3.5" /> Back to clients

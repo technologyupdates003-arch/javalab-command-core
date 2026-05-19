@@ -33,45 +33,45 @@ import {
 const groups = [
   {
     label: "Overview",
-    items: [{ title: "HQ Dashboard", url: "/", icon: LayoutDashboard }],
+    items: [{ title: "HQ Dashboard", url: "/hq", icon: LayoutDashboard }],
   },
   {
     label: "Revenue",
     items: [
-      { title: "Clients", url: "/clients", icon: Building2 },
-      { title: "Subscriptions", url: "/subscriptions", icon: CreditCard },
-      { title: "Finance", url: "/finance", icon: Banknote },
+      { title: "Clients", url: "/hq/clients", icon: Building2 },
+      { title: "Subscriptions", url: "/hq/subscriptions", icon: CreditCard },
+      { title: "Finance", url: "/hq/finance", icon: Banknote },
     ],
   },
   {
     label: "Products",
     items: [
-      { title: "SaaS Products", url: "/products", icon: Package },
-      { title: "Bulk SMS", url: "/sms", icon: MessageSquare },
+      { title: "SaaS Products", url: "/hq/products", icon: Package },
+      { title: "Bulk SMS", url: "/hq/sms", icon: MessageSquare },
     ],
   },
   {
     label: "Workspace",
     items: [
-      { title: "Projects", url: "/projects", icon: SquareKanban },
-      { title: "Staff & Departments", url: "/staff", icon: UsersRound },
-      { title: "Office Desk", url: "/office", icon: Users },
-      { title: "Password Vault", url: "/vault", icon: KeyRound },
+      { title: "Projects", url: "/hq/projects", icon: SquareKanban },
+      { title: "Staff & Departments", url: "/hq/staff", icon: UsersRound },
+      { title: "Office Desk", url: "/hq/office", icon: Users },
+      { title: "Password Vault", url: "/hq/vault", icon: KeyRound },
     ],
   },
   {
     label: "Growth & Care",
     items: [
-      { title: "Marketing", url: "/marketing", icon: Megaphone },
-      { title: "Support", url: "/support", icon: HeadphonesIcon },
+      { title: "Marketing", url: "/hq/marketing", icon: Megaphone },
+      { title: "Support", url: "/hq/support", icon: HeadphonesIcon },
     ],
   },
   {
     label: "System",
     items: [
-      { title: "Security", url: "/security", icon: ShieldCheck },
-      { title: "Developer", url: "/developer", icon: Code2 },
-      { title: "AI Assistant", url: "/ai", icon: Bot },
+      { title: "Security", url: "/hq/security", icon: ShieldCheck },
+      { title: "Developer", url: "/hq/developer", icon: Code2 },
+      { title: "AI Assistant", url: "/hq/ai", icon: Bot },
     ],
   },
 ];
@@ -83,7 +83,7 @@ export function AppSidebar() {
   return (
     <Sidebar collapsible="icon" className="border-r border-sidebar-border">
       <SidebarHeader className="border-b border-sidebar-border">
-        <Link to="/" className="flex items-center gap-2.5 px-2 py-2">
+        <Link to="/hq" className="flex items-center gap-2.5 px-2 py-2">
           <div className="relative flex size-8 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-primary-glow shadow-[0_0_20px_-2px_oklch(0.72_0.22_250/0.6)]">
             <Activity className="size-4 text-primary-foreground" strokeWidth={2.5} />
           </div>

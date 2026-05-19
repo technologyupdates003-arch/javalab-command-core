@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Bot, Send, Sparkles } from "lucide-react";
 import { GlassCard, PageHeader } from "@/components/hq/primitives";
 
-export const Route = createFileRoute("/_hq/ai/")({
+export const Route = createFileRoute("/hq/ai/")({
   component: AIPage,
   head: () => ({ meta: [{ title: "AI Assistant — Javalab HQ" }] }),
 });

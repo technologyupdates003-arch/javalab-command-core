@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ComingSoon } from "@/components/hq/primitives";
 
-export const Route = createFileRoute("/_hq/office/")({
+export const Route = createFileRoute("/hq/office/")({
   component: () => (
     <ComingSoon
       title="Office Desk"

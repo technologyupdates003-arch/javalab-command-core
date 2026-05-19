@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ComingSoon } from "@/components/hq/primitives";
 
-export const Route = createFileRoute("/_hq/marketing/")({
+export const Route = createFileRoute("/hq/marketing/")({
   component: () => (
     <ComingSoon
       title="Marketing Center"

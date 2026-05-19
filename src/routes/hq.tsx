@@ -3,7 +3,7 @@ import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/hq/app-sidebar";
 import { TopBar } from "@/components/hq/top-bar";
 
-export const Route = createFileRoute("/_hq")({
+export const Route = createFileRoute("/hq")({
   component: HQLayout,
 });
 
