@@ -39,6 +39,7 @@ import { Route as HqDeveloperIndexRouteImport } from './routes/hq.developer.inde
 import { Route as HqClientsIndexRouteImport } from './routes/hq.clients.index'
 import { Route as HqAiIndexRouteImport } from './routes/hq.ai.index'
 import { Route as HqClientsIdRouteImport } from './routes/hq.clients.$id'
+import { Route as ApiPublicMpesaCallbackRouteImport } from './routes/api/public/mpesa.callback'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
@@ -189,6 +190,11 @@ const HqClientsIdRoute = HqClientsIdRouteImport.update({
   path: '/clients/$id',
   getParentRoute: () => HqRoute,
 } as any)
+const ApiPublicMpesaCallbackRoute = ApiPublicMpesaCallbackRouteImport.update({
+  id: '/api/public/mpesa/callback',
+  path: '/api/public/mpesa/callback',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof SiteIndexRoute
@@ -220,6 +226,7 @@ export interface FileRoutesByFullPath {
   '/hq/subscriptions/': typeof HqSubscriptionsIndexRoute
   '/hq/support/': typeof HqSupportIndexRoute
   '/hq/vault/': typeof HqVaultIndexRoute
+  '/api/public/mpesa/callback': typeof ApiPublicMpesaCallbackRoute
 }
 export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -250,6 +257,7 @@ export interface FileRoutesByTo {
   '/hq/subscriptions': typeof HqSubscriptionsIndexRoute
   '/hq/support': typeof HqSupportIndexRoute
   '/hq/vault': typeof HqVaultIndexRoute
+  '/api/public/mpesa/callback': typeof ApiPublicMpesaCallbackRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -283,6 +291,7 @@ export interface FileRoutesById {
   '/hq/subscriptions/': typeof HqSubscriptionsIndexRoute
   '/hq/support/': typeof HqSupportIndexRoute
   '/hq/vault/': typeof HqVaultIndexRoute
+  '/api/public/mpesa/callback': typeof ApiPublicMpesaCallbackRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -316,6 +325,7 @@ export interface FileRouteTypes {
     | '/hq/subscriptions/'
     | '/hq/support/'
     | '/hq/vault/'
+    | '/api/public/mpesa/callback'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/sitemap.xml'
@@ -346,6 +356,7 @@ export interface FileRouteTypes {
     | '/hq/subscriptions'
     | '/hq/support'
     | '/hq/vault'
+    | '/api/public/mpesa/callback'
   id:
     | '__root__'
     | '/_site'
@@ -378,12 +389,14 @@ export interface FileRouteTypes {
     | '/hq/subscriptions/'
     | '/hq/support/'
     | '/hq/vault/'
+    | '/api/public/mpesa/callback'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   SiteRoute: typeof SiteRouteWithChildren
   HqRoute: typeof HqRouteWithChildren
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  ApiPublicMpesaCallbackRoute: typeof ApiPublicMpesaCallbackRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -598,6 +611,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HqClientsIdRouteImport
       parentRoute: typeof HqRoute
     }
+    '/api/public/mpesa/callback': {
+      id: '/api/public/mpesa/callback'
+      path: '/api/public/mpesa/callback'
+      fullPath: '/api/public/mpesa/callback'
+      preLoaderRoute: typeof ApiPublicMpesaCallbackRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -675,6 +695,7 @@ const rootRouteChildren: RootRouteChildren = {
   SiteRoute: SiteRouteWithChildren,
   HqRoute: HqRouteWithChildren,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  ApiPublicMpesaCallbackRoute: ApiPublicMpesaCallbackRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
