@@ -14,7 +14,10 @@ import { Route as HqRouteImport } from './routes/hq'
 import { Route as AppRouteImport } from './routes/app'
 import { Route as SiteRouteImport } from './routes/_site'
 import { Route as HqIndexRouteImport } from './routes/hq.index'
+import { Route as AppIndexRouteImport } from './routes/app.index'
 import { Route as SiteIndexRouteImport } from './routes/_site.index'
+import { Route as AppOnboardingRouteImport } from './routes/app.onboarding'
+import { Route as AppSlugRouteImport } from './routes/app.$slug'
 import { Route as SiteSupportRouteImport } from './routes/_site.support'
 import { Route as SiteSignupRouteImport } from './routes/_site.signup'
 import { Route as SiteServicesRouteImport } from './routes/_site.services'
@@ -40,7 +43,12 @@ import { Route as HqFinanceIndexRouteImport } from './routes/hq.finance.index'
 import { Route as HqDeveloperIndexRouteImport } from './routes/hq.developer.index'
 import { Route as HqClientsIndexRouteImport } from './routes/hq.clients.index'
 import { Route as HqAiIndexRouteImport } from './routes/hq.ai.index'
+import { Route as AppSlugIndexRouteImport } from './routes/app.$slug.index'
 import { Route as HqClientsIdRouteImport } from './routes/hq.clients.$id'
+import { Route as AppSlugSmsRouteImport } from './routes/app.$slug.sms'
+import { Route as AppSlugMarketplaceRouteImport } from './routes/app.$slug.marketplace'
+import { Route as AppSlugBillingRouteImport } from './routes/app.$slug.billing'
+import { Route as AppSlugProductRouteImport } from './routes/app.$slug.$product'
 import { Route as ApiPublicMpesaCallbackRouteImport } from './routes/api/public/mpesa.callback'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
@@ -67,10 +75,25 @@ const HqIndexRoute = HqIndexRouteImport.update({
   path: '/',
   getParentRoute: () => HqRoute,
 } as any)
+const AppIndexRoute = AppIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AppRoute,
+} as any)
 const SiteIndexRoute = SiteIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => SiteRoute,
+} as any)
+const AppOnboardingRoute = AppOnboardingRouteImport.update({
+  id: '/onboarding',
+  path: '/onboarding',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppSlugRoute = AppSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => AppRoute,
 } as any)
 const SiteSupportRoute = SiteSupportRouteImport.update({
   id: '/support',
@@ -197,10 +220,35 @@ const HqAiIndexRoute = HqAiIndexRouteImport.update({
   path: '/ai/',
   getParentRoute: () => HqRoute,
 } as any)
+const AppSlugIndexRoute = AppSlugIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AppSlugRoute,
+} as any)
 const HqClientsIdRoute = HqClientsIdRouteImport.update({
   id: '/clients/$id',
   path: '/clients/$id',
   getParentRoute: () => HqRoute,
+} as any)
+const AppSlugSmsRoute = AppSlugSmsRouteImport.update({
+  id: '/sms',
+  path: '/sms',
+  getParentRoute: () => AppSlugRoute,
+} as any)
+const AppSlugMarketplaceRoute = AppSlugMarketplaceRouteImport.update({
+  id: '/marketplace',
+  path: '/marketplace',
+  getParentRoute: () => AppSlugRoute,
+} as any)
+const AppSlugBillingRoute = AppSlugBillingRouteImport.update({
+  id: '/billing',
+  path: '/billing',
+  getParentRoute: () => AppSlugRoute,
+} as any)
+const AppSlugProductRoute = AppSlugProductRouteImport.update({
+  id: '/$product',
+  path: '/$product',
+  getParentRoute: () => AppSlugRoute,
 } as any)
 const ApiPublicMpesaCallbackRoute = ApiPublicMpesaCallbackRouteImport.update({
   id: '/api/public/mpesa/callback',
@@ -210,7 +258,7 @@ const ApiPublicMpesaCallbackRoute = ApiPublicMpesaCallbackRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof SiteIndexRoute
-  '/app': typeof AppRoute
+  '/app': typeof AppRouteWithChildren
   '/hq': typeof HqRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog': typeof SiteBlogRoute
@@ -224,8 +272,16 @@ export interface FileRoutesByFullPath {
   '/services': typeof SiteServicesRoute
   '/signup': typeof SiteSignupRoute
   '/support': typeof SiteSupportRoute
+  '/app/$slug': typeof AppSlugRouteWithChildren
+  '/app/onboarding': typeof AppOnboardingRoute
+  '/app/': typeof AppIndexRoute
   '/hq/': typeof HqIndexRoute
+  '/app/$slug/$product': typeof AppSlugProductRoute
+  '/app/$slug/billing': typeof AppSlugBillingRoute
+  '/app/$slug/marketplace': typeof AppSlugMarketplaceRoute
+  '/app/$slug/sms': typeof AppSlugSmsRoute
   '/hq/clients/$id': typeof HqClientsIdRoute
+  '/app/$slug/': typeof AppSlugIndexRoute
   '/hq/ai/': typeof HqAiIndexRoute
   '/hq/clients/': typeof HqClientsIndexRoute
   '/hq/developer/': typeof HqDeveloperIndexRoute
@@ -243,7 +299,6 @@ export interface FileRoutesByFullPath {
   '/api/public/mpesa/callback': typeof ApiPublicMpesaCallbackRoute
 }
 export interface FileRoutesByTo {
-  '/app': typeof AppRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog': typeof SiteBlogRoute
   '/careers': typeof SiteCareersRoute
@@ -256,9 +311,16 @@ export interface FileRoutesByTo {
   '/services': typeof SiteServicesRoute
   '/signup': typeof SiteSignupRoute
   '/support': typeof SiteSupportRoute
+  '/app/onboarding': typeof AppOnboardingRoute
   '/': typeof SiteIndexRoute
+  '/app': typeof AppIndexRoute
   '/hq': typeof HqIndexRoute
+  '/app/$slug/$product': typeof AppSlugProductRoute
+  '/app/$slug/billing': typeof AppSlugBillingRoute
+  '/app/$slug/marketplace': typeof AppSlugMarketplaceRoute
+  '/app/$slug/sms': typeof AppSlugSmsRoute
   '/hq/clients/$id': typeof HqClientsIdRoute
+  '/app/$slug': typeof AppSlugIndexRoute
   '/hq/ai': typeof HqAiIndexRoute
   '/hq/clients': typeof HqClientsIndexRoute
   '/hq/developer': typeof HqDeveloperIndexRoute
@@ -278,7 +340,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_site': typeof SiteRouteWithChildren
-  '/app': typeof AppRoute
+  '/app': typeof AppRouteWithChildren
   '/hq': typeof HqRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/_site/blog': typeof SiteBlogRoute
@@ -292,9 +354,17 @@ export interface FileRoutesById {
   '/_site/services': typeof SiteServicesRoute
   '/_site/signup': typeof SiteSignupRoute
   '/_site/support': typeof SiteSupportRoute
+  '/app/$slug': typeof AppSlugRouteWithChildren
+  '/app/onboarding': typeof AppOnboardingRoute
   '/_site/': typeof SiteIndexRoute
+  '/app/': typeof AppIndexRoute
   '/hq/': typeof HqIndexRoute
+  '/app/$slug/$product': typeof AppSlugProductRoute
+  '/app/$slug/billing': typeof AppSlugBillingRoute
+  '/app/$slug/marketplace': typeof AppSlugMarketplaceRoute
+  '/app/$slug/sms': typeof AppSlugSmsRoute
   '/hq/clients/$id': typeof HqClientsIdRoute
+  '/app/$slug/': typeof AppSlugIndexRoute
   '/hq/ai/': typeof HqAiIndexRoute
   '/hq/clients/': typeof HqClientsIndexRoute
   '/hq/developer/': typeof HqDeveloperIndexRoute
@@ -329,8 +399,16 @@ export interface FileRouteTypes {
     | '/services'
     | '/signup'
     | '/support'
+    | '/app/$slug'
+    | '/app/onboarding'
+    | '/app/'
     | '/hq/'
+    | '/app/$slug/$product'
+    | '/app/$slug/billing'
+    | '/app/$slug/marketplace'
+    | '/app/$slug/sms'
     | '/hq/clients/$id'
+    | '/app/$slug/'
     | '/hq/ai/'
     | '/hq/clients/'
     | '/hq/developer/'
@@ -348,7 +426,6 @@ export interface FileRouteTypes {
     | '/api/public/mpesa/callback'
   fileRoutesByTo: FileRoutesByTo
   to:
-    | '/app'
     | '/sitemap.xml'
     | '/blog'
     | '/careers'
@@ -361,9 +438,16 @@ export interface FileRouteTypes {
     | '/services'
     | '/signup'
     | '/support'
+    | '/app/onboarding'
     | '/'
+    | '/app'
     | '/hq'
+    | '/app/$slug/$product'
+    | '/app/$slug/billing'
+    | '/app/$slug/marketplace'
+    | '/app/$slug/sms'
     | '/hq/clients/$id'
+    | '/app/$slug'
     | '/hq/ai'
     | '/hq/clients'
     | '/hq/developer'
@@ -396,9 +480,17 @@ export interface FileRouteTypes {
     | '/_site/services'
     | '/_site/signup'
     | '/_site/support'
+    | '/app/$slug'
+    | '/app/onboarding'
     | '/_site/'
+    | '/app/'
     | '/hq/'
+    | '/app/$slug/$product'
+    | '/app/$slug/billing'
+    | '/app/$slug/marketplace'
+    | '/app/$slug/sms'
     | '/hq/clients/$id'
+    | '/app/$slug/'
     | '/hq/ai/'
     | '/hq/clients/'
     | '/hq/developer/'
@@ -418,7 +510,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   SiteRoute: typeof SiteRouteWithChildren
-  AppRoute: typeof AppRoute
+  AppRoute: typeof AppRouteWithChildren
   HqRoute: typeof HqRouteWithChildren
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   ApiPublicMpesaCallbackRoute: typeof ApiPublicMpesaCallbackRoute
@@ -461,12 +553,33 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HqIndexRouteImport
       parentRoute: typeof HqRoute
     }
+    '/app/': {
+      id: '/app/'
+      path: '/'
+      fullPath: '/app/'
+      preLoaderRoute: typeof AppIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/_site/': {
       id: '/_site/'
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof SiteIndexRouteImport
       parentRoute: typeof SiteRoute
+    }
+    '/app/onboarding': {
+      id: '/app/onboarding'
+      path: '/onboarding'
+      fullPath: '/app/onboarding'
+      preLoaderRoute: typeof AppOnboardingRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/$slug': {
+      id: '/app/$slug'
+      path: '/$slug'
+      fullPath: '/app/$slug'
+      preLoaderRoute: typeof AppSlugRouteImport
+      parentRoute: typeof AppRoute
     }
     '/_site/support': {
       id: '/_site/support'
@@ -643,12 +756,47 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HqAiIndexRouteImport
       parentRoute: typeof HqRoute
     }
+    '/app/$slug/': {
+      id: '/app/$slug/'
+      path: '/'
+      fullPath: '/app/$slug/'
+      preLoaderRoute: typeof AppSlugIndexRouteImport
+      parentRoute: typeof AppSlugRoute
+    }
     '/hq/clients/$id': {
       id: '/hq/clients/$id'
       path: '/clients/$id'
       fullPath: '/hq/clients/$id'
       preLoaderRoute: typeof HqClientsIdRouteImport
       parentRoute: typeof HqRoute
+    }
+    '/app/$slug/sms': {
+      id: '/app/$slug/sms'
+      path: '/sms'
+      fullPath: '/app/$slug/sms'
+      preLoaderRoute: typeof AppSlugSmsRouteImport
+      parentRoute: typeof AppSlugRoute
+    }
+    '/app/$slug/marketplace': {
+      id: '/app/$slug/marketplace'
+      path: '/marketplace'
+      fullPath: '/app/$slug/marketplace'
+      preLoaderRoute: typeof AppSlugMarketplaceRouteImport
+      parentRoute: typeof AppSlugRoute
+    }
+    '/app/$slug/billing': {
+      id: '/app/$slug/billing'
+      path: '/billing'
+      fullPath: '/app/$slug/billing'
+      preLoaderRoute: typeof AppSlugBillingRouteImport
+      parentRoute: typeof AppSlugRoute
+    }
+    '/app/$slug/$product': {
+      id: '/app/$slug/$product'
+      path: '/$product'
+      fullPath: '/app/$slug/$product'
+      preLoaderRoute: typeof AppSlugProductRouteImport
+      parentRoute: typeof AppSlugRoute
     }
     '/api/public/mpesa/callback': {
       id: '/api/public/mpesa/callback'
@@ -692,6 +840,39 @@ const SiteRouteChildren: SiteRouteChildren = {
 
 const SiteRouteWithChildren = SiteRoute._addFileChildren(SiteRouteChildren)
 
+interface AppSlugRouteChildren {
+  AppSlugProductRoute: typeof AppSlugProductRoute
+  AppSlugBillingRoute: typeof AppSlugBillingRoute
+  AppSlugMarketplaceRoute: typeof AppSlugMarketplaceRoute
+  AppSlugSmsRoute: typeof AppSlugSmsRoute
+  AppSlugIndexRoute: typeof AppSlugIndexRoute
+}
+
+const AppSlugRouteChildren: AppSlugRouteChildren = {
+  AppSlugProductRoute: AppSlugProductRoute,
+  AppSlugBillingRoute: AppSlugBillingRoute,
+  AppSlugMarketplaceRoute: AppSlugMarketplaceRoute,
+  AppSlugSmsRoute: AppSlugSmsRoute,
+  AppSlugIndexRoute: AppSlugIndexRoute,
+}
+
+const AppSlugRouteWithChildren =
+  AppSlugRoute._addFileChildren(AppSlugRouteChildren)
+
+interface AppRouteChildren {
+  AppSlugRoute: typeof AppSlugRouteWithChildren
+  AppOnboardingRoute: typeof AppOnboardingRoute
+  AppIndexRoute: typeof AppIndexRoute
+}
+
+const AppRouteChildren: AppRouteChildren = {
+  AppSlugRoute: AppSlugRouteWithChildren,
+  AppOnboardingRoute: AppOnboardingRoute,
+  AppIndexRoute: AppIndexRoute,
+}
+
+const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
+
 interface HqRouteChildren {
   HqIndexRoute: typeof HqIndexRoute
   HqClientsIdRoute: typeof HqClientsIdRoute
@@ -734,7 +915,7 @@ const HqRouteWithChildren = HqRoute._addFileChildren(HqRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   SiteRoute: SiteRouteWithChildren,
-  AppRoute: AppRoute,
+  AppRoute: AppRouteWithChildren,
   HqRoute: HqRouteWithChildren,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   ApiPublicMpesaCallbackRoute: ApiPublicMpesaCallbackRoute,
