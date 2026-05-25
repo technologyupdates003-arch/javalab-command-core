@@ -3246,6 +3246,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      credit_sms_wallet: {
+        Args: { _amount: number; _tenant: string }
+        Returns: number
+      }
       current_user_tenants: { Args: never; Returns: string[] }
       has_role: {
         Args: {
