@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as HqRouteImport } from './routes/hq'
+import { Route as AppRouteImport } from './routes/app'
 import { Route as SiteRouteImport } from './routes/_site'
 import { Route as HqIndexRouteImport } from './routes/hq.index'
 import { Route as SiteIndexRouteImport } from './routes/_site.index'
@@ -50,6 +51,11 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
 const HqRoute = HqRouteImport.update({
   id: '/hq',
   path: '/hq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppRoute = AppRouteImport.update({
+  id: '/app',
+  path: '/app',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SiteRoute = SiteRouteImport.update({
@@ -204,6 +210,7 @@ const ApiPublicMpesaCallbackRoute = ApiPublicMpesaCallbackRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof SiteIndexRoute
+  '/app': typeof AppRoute
   '/hq': typeof HqRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog': typeof SiteBlogRoute
@@ -236,6 +243,7 @@ export interface FileRoutesByFullPath {
   '/api/public/mpesa/callback': typeof ApiPublicMpesaCallbackRoute
 }
 export interface FileRoutesByTo {
+  '/app': typeof AppRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog': typeof SiteBlogRoute
   '/careers': typeof SiteCareersRoute
@@ -270,6 +278,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_site': typeof SiteRouteWithChildren
+  '/app': typeof AppRoute
   '/hq': typeof HqRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/_site/blog': typeof SiteBlogRoute
@@ -306,6 +315,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/app'
     | '/hq'
     | '/sitemap.xml'
     | '/blog'
@@ -338,6 +348,7 @@ export interface FileRouteTypes {
     | '/api/public/mpesa/callback'
   fileRoutesByTo: FileRoutesByTo
   to:
+    | '/app'
     | '/sitemap.xml'
     | '/blog'
     | '/careers'
@@ -371,6 +382,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/_site'
+    | '/app'
     | '/hq'
     | '/sitemap.xml'
     | '/_site/blog'
@@ -406,6 +418,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   SiteRoute: typeof SiteRouteWithChildren
+  AppRoute: typeof AppRoute
   HqRoute: typeof HqRouteWithChildren
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   ApiPublicMpesaCallbackRoute: typeof ApiPublicMpesaCallbackRoute
@@ -425,6 +438,13 @@ declare module '@tanstack/react-router' {
       path: '/hq'
       fullPath: '/hq'
       preLoaderRoute: typeof HqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app': {
+      id: '/app'
+      path: '/app'
+      fullPath: '/app'
+      preLoaderRoute: typeof AppRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_site': {
@@ -714,6 +734,7 @@ const HqRouteWithChildren = HqRoute._addFileChildren(HqRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   SiteRoute: SiteRouteWithChildren,
+  AppRoute: AppRoute,
   HqRoute: HqRouteWithChildren,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   ApiPublicMpesaCallbackRoute: ApiPublicMpesaCallbackRoute,
