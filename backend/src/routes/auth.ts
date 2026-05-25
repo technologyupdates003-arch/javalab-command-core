@@ -1,223 +1,172 @@
 import { Router, Request, Response } from 'express';
-import jwt from 'jsonwebtoken';
-import bcryptjs from 'bcryptjs';
-import { config } from '@/config/index.js';
-import { query } from '@/services/database.js';
-import { set, get } from '@/services/cache.js';
-import { authRateLimiter } from '@/middleware/rateLimit.js';
-import logger from '@/utils/logger.js';
-import { AppError, ApiResponse, AuthResponse, User } from '@/types/index.js';
+import { authService } from '../services/authService';
+import { logger } from '../utils/logger';
 
 const router = Router();
 
 /**
- * Login endpoint
- * POST /api/auth/login
+ * POST /api/auth/google/callback
+ * Handle Google OAuth callback
  */
-router.post('/login', authRateLimiter, async (req: Request, res: Response): Promise<void> => {
+router.post('/google/callback', async (req: Request, res: Response) => {
   try {
-    const { email, password } = req.body;
+    const { googleUser } = req.body;
 
-    if (!email || !password) {
-      throw new AppError('INVALID_INPUT', 400, 'Email and password are required');
+    if (!googleUser || !googleUser.email) {
+      return res.status(400).json({ error: 'Invalid Google user data' });
     }
 
-    // Query user from database
-    const result = await query(
-      `SELECT id, email, password_hash, first_name, last_name, role, status, two_fa_enabled
-       FROM users WHERE email = $1`,
-      [email]
-    );
+    const user = await authService.handleGoogleOAuthCallback(googleUser);
 
-    const rows = (result as any).rows;
-    if (rows.length === 0) {
-      logger.warn('Login attempt with non-existent email', { email });
-      throw new AppError('INVALID_CREDENTIALS', 401, 'Invalid email or password');
-    }
-
-    const user = rows[0];
-
-    // Check if user is active
-    if (user.status !== 'active') {
-      logger.warn('Login attempt with inactive user', { email, status: user.status });
-      throw new AppError('USER_INACTIVE', 403, 'User account is inactive');
-    }
-
-    // Verify password
-    const passwordMatch = await bcryptjs.compare(password, user.password_hash);
-    if (!passwordMatch) {
-      logger.warn('Login attempt with wrong password', { email });
-      throw new AppError('INVALID_CREDENTIALS', 401, 'Invalid email or password');
-    }
-
-    // Get user permissions
-    const permResult = await query(
-      `SELECT p.name FROM permissions p
-       JOIN role_permissions rp ON p.id = rp.permission_id
-       JOIN roles r ON rp.role_id = r.id
-       WHERE r.name = $1`,
-      [user.role]
-    );
-
-    const permissions = (permResult as any).rows.map((row: any) => row.name);
-
-    // Create JWT token
-    const token = jwt.sign(
-      {
-        userId: user.id,
-        email: user.email,
-        role: user.role,
-        permissions,
-      },
-      config.jwt.secret,
-      { expiresIn: config.jwt.expiry }
-    );
-
-    // Cache token for quick validation
-    await set(`token:${token}`, { userId: user.id, role: user.role }, 86400);
-
-    // Update last login
-    await query('UPDATE users SET last_login = NOW() WHERE id = $1', [user.id]);
-
-    // Log successful login
-    logger.info('User logged in successfully', { userId: user.id, email });
-
-    const userData: User = {
-      id: user.id,
-      email: user.email,
-      firstName: user.first_name,
-      lastName: user.last_name,
-      role: user.role,
-      status: user.status,
-      twoFaEnabled: user.two_fa_enabled,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    };
-
-    const response: ApiResponse<AuthResponse> = {
-      success: true,
-      data: {
-        token,
-        user: userData,
-      },
-      timestamp: new Date(),
-    };
-
-    res.json(response);
-  } catch (err) {
-    if (err instanceof AppError) {
-      res.status(err.statusCode).json({
-        success: false,
-        error: {
-          code: err.code,
-          message: err.message,
-        },
-        timestamp: new Date(),
-      });
-    } else {
-      logger.error('Login error', err);
-      res.status(500).json({
-        success: false,
-        error: {
-          code: 'INTERNAL_ERROR',
-          message: 'Internal server error',
-        },
-        timestamp: new Date(),
-      });
-    }
+    res.json({
+      user,
+      message: 'Successfully authenticated with Google'
+    });
+  } catch (error) {
+    logger.error('Failed to handle Google OAuth callback', error);
+    res.status(500).json({ error: 'Failed to authenticate with Google' });
   }
 });
 
 /**
- * Logout endpoint
- * POST /api/auth/logout
+ * POST /api/auth/google/link
+ * Link Google account to existing user
  */
-router.post('/logout', async (req: Request, res: Response): Promise<void> => {
+router.post('/google/link', async (req: Request, res: Response) => {
   try {
-    if (!req.context) {
-      throw new AppError('UNAUTHORIZED', 401, 'Authentication required');
+    const userId = req.user?.id;
+    const { googleUser } = req.body;
+
+    if (!userId) {
+      return res.status(401).json({ error: 'Unauthorized' });
     }
 
-    const token = req.headers.authorization?.substring(7);
-    if (token) {
-      // Invalidate token in cache
-      await set(`token:blacklist:${token}`, true, 86400);
+    if (!googleUser || !googleUser.email) {
+      return res.status(400).json({ error: 'Invalid Google user data' });
     }
 
-    logger.info('User logged out', { userId: req.context.userId });
+    const user = await authService.linkGoogleAccount(userId, googleUser);
 
-    const response: ApiResponse<null> = {
-      success: true,
-      timestamp: new Date(),
-    };
-
-    res.json(response);
-  } catch (err) {
-    if (err instanceof AppError) {
-      res.status(err.statusCode).json({
-        success: false,
-        error: {
-          code: err.code,
-          message: err.message,
-        },
-        timestamp: new Date(),
-      });
-    } else {
-      logger.error('Logout error', err);
-      res.status(500).json({
-        success: false,
-        error: {
-          code: 'INTERNAL_ERROR',
-          message: 'Internal server error',
-        },
-        timestamp: new Date(),
-      });
-    }
+    res.json({
+      user,
+      message: 'Successfully linked Google account'
+    });
+  } catch (error) {
+    logger.error('Failed to link Google account', error);
+    res.status(500).json({ error: 'Failed to link Google account' });
   }
 });
 
 /**
- * Verify token endpoint
- * GET /api/auth/verify
+ * POST /api/auth/password-reset/request
+ * Request password reset
  */
-router.get('/verify', async (req: Request, res: Response): Promise<void> => {
+router.post('/password-reset/request', async (req: Request, res: Response) => {
   try {
-    if (!req.context) {
-      throw new AppError('UNAUTHORIZED', 401, 'Authentication required');
+    const { email } = req.body;
+
+    if (!email) {
+      return res.status(400).json({ error: 'Email required' });
     }
 
-    const response: ApiResponse<{ valid: boolean; userId: string; role: string }> = {
-      success: true,
-      data: {
-        valid: true,
-        userId: req.context.userId,
-        role: req.context.role,
-      },
-      timestamp: new Date(),
-    };
+    const result = await authService.requestPasswordReset(email);
 
-    res.json(response);
-  } catch (err) {
-    if (err instanceof AppError) {
-      res.status(err.statusCode).json({
-        success: false,
-        error: {
-          code: err.code,
-          message: err.message,
-        },
-        timestamp: new Date(),
-      });
-    } else {
-      logger.error('Verify error', err);
-      res.status(500).json({
-        success: false,
-        error: {
-          code: 'INTERNAL_ERROR',
-          message: 'Internal server error',
-        },
-        timestamp: new Date(),
-      });
+    res.json(result);
+  } catch (error) {
+    logger.error('Failed to request password reset', error);
+    res.status(500).json({ error: 'Failed to request password reset' });
+  }
+});
+
+/**
+ * POST /api/auth/password-reset/verify
+ * Verify reset token
+ */
+router.post('/password-reset/verify', async (req: Request, res: Response) => {
+  try {
+    const { token } = req.body;
+
+    if (!token) {
+      return res.status(400).json({ error: 'Token required' });
     }
+
+    const result = await authService.verifyResetToken(token);
+
+    res.json(result);
+  } catch (error) {
+    logger.error('Failed to verify reset token', error);
+    res.status(500).json({ error: 'Failed to verify reset token' });
+  }
+});
+
+/**
+ * POST /api/auth/password-reset/confirm
+ * Reset password with token
+ */
+router.post('/password-reset/confirm', async (req: Request, res: Response) => {
+  try {
+    const { token, newPassword } = req.body;
+
+    if (!token || !newPassword) {
+      return res.status(400).json({ error: 'Token and new password required' });
+    }
+
+    const result = await authService.resetPassword(token, newPassword);
+
+    res.json(result);
+  } catch (error) {
+    logger.error('Failed to reset password', error);
+    res.status(500).json({ error: String(error) });
+  }
+});
+
+/**
+ * GET /api/auth/user
+ * Get current authenticated user
+ */
+router.get('/user', async (req: Request, res: Response) => {
+  try {
+    const userId = req.user?.id;
+
+    if (!userId) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
+
+    const user = await authService.getUserById(userId);
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    res.json(user);
+  } catch (error) {
+    logger.error('Failed to get user', error);
+    res.status(500).json({ error: 'Failed to get user' });
+  }
+});
+
+/**
+ * PUT /api/auth/user
+ * Update user profile
+ */
+router.put('/user', async (req: Request, res: Response) => {
+  try {
+    const userId = req.user?.id;
+    const { name, avatar_url } = req.body;
+
+    if (!userId) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
+
+    const user = await authService.updateUserProfile(userId, {
+      name,
+      avatar_url
+    });
+
+    res.json(user);
+  } catch (error) {
+    logger.error('Failed to update user profile', error);
+    res.status(500).json({ error: 'Failed to update user profile' });
   }
 });
 
