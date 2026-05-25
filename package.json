@@ -3,9 +3,6 @@
   "private": true,
   "sideEffects": false,
   "type": "module",
-  "workspaces": [
-    "backend"
-  ],
   "scripts": {
     "dev": "vite dev",
     "dev:backend": "cd backend && npm run dev",
