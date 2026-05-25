@@ -73,7 +73,7 @@ function Home() {
             <div className="mt-8 flex flex-wrap justify-center gap-3">
               <Link
                 to="/quote"
-                className="inline-flex h-11 items-center gap-2 rounded-lg bg-gradient-to-r from-primary to-primary-glow px-5 text-sm font-medium text-primary-foreground shadow-[0_0_32px_-6px_oklch(0.72_0.22_250/0.7)] transition-shadow hover:shadow-[0_0_48px_-6px_oklch(0.72_0.22_250/0.95)]"
+                className="inline-flex h-11 items-center gap-2 rounded-lg bg-gradient-to-r from-primary to-primary-glow px-5 text-sm font-medium text-primary-foreground shadow-[0_0_32px_-6px_oklch(0.65_0.22_35/0.7)] transition-shadow hover:shadow-[0_0_48px_-6px_oklch(0.65_0.22_35/0.95)]"
               >
                 Start a project <ArrowRight className="size-4" />
               </Link>
@@ -97,7 +97,7 @@ function Home() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="glass-elevated relative mx-auto mt-16 max-w-5xl overflow-hidden rounded-3xl p-2 shadow-[0_30px_80px_-30px_oklch(0.72_0.22_250/0.5)]"
+            className="glass-elevated relative mx-auto mt-16 max-w-5xl overflow-hidden rounded-3xl p-2 shadow-[0_30px_80px_-30px_oklch(0.65_0.22_35/0.5)]"
           >
             <div className="relative aspect-[16/9] overflow-hidden rounded-2xl border border-glass-border bg-background">
               <div className="absolute inset-0 grid-bg opacity-50" />
@@ -127,8 +127,8 @@ function Home() {
                   <svg viewBox="0 0 400 100" className="h-full w-full">
                     <defs>
                       <linearGradient id="g" x1="0" x2="0" y1="0" y2="1">
-                        <stop offset="0%" stopColor="oklch(0.72 0.22 250)" stopOpacity="0.5" />
-                        <stop offset="100%" stopColor="oklch(0.72 0.22 250)" stopOpacity="0" />
+                        <stop offset="0%" stopColor="oklch(0.65 0.22 35)" stopOpacity="0.5" />
+                        <stop offset="100%" stopColor="oklch(0.65 0.22 35)" stopOpacity="0" />
                       </linearGradient>
                     </defs>
                     <path
@@ -137,7 +137,7 @@ function Home() {
                     />
                     <path
                       d="M0,70 C40,60 60,40 100,45 C140,50 160,80 200,60 C240,40 260,20 300,30 C340,40 360,55 400,35"
-                      stroke="oklch(0.78 0.24 245)"
+                      stroke="oklch(0.72 0.24 30)"
                       strokeWidth="2"
                       fill="none"
                     />
@@ -218,7 +218,7 @@ function Home() {
               <Link
                 to="/products"
                 key={p.slug}
-                className="group glass-elevated relative overflow-hidden rounded-2xl p-6 transition-all hover:border-primary/40 hover:shadow-[0_0_40px_-8px_oklch(0.72_0.22_250/0.4)]"
+                className="group glass-elevated relative overflow-hidden rounded-2xl p-6 transition-all hover:border-primary/40 hover:shadow-[0_0_40px_-8px_oklch(0.65_0.22_35/0.4)]"
               >
                 <div className="pointer-events-none absolute -right-10 -top-10 size-32 rounded-full bg-gradient-to-br from-primary/30 to-chart-5/20 opacity-0 blur-2xl transition-opacity group-hover:opacity-100" />
                 <div className="relative">
@@ -298,7 +298,7 @@ function Home() {
                   className="relative h-44 overflow-hidden border-b border-glass-border"
                   style={{
                     background:
-                      "linear-gradient(135deg, oklch(0.2 0.08 250), oklch(0.15 0.04 240))",
+                      "linear-gradient(135deg, oklch(0.2 0.08 35), oklch(0.15 0.04 30))",
                   }}
                 >
                   <div className="absolute inset-0 grid-bg opacity-50" />

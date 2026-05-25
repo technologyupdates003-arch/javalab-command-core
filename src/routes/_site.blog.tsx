@@ -68,7 +68,7 @@ function BlogPage() {
             <article key={b.slug} className="glass-elevated overflow-hidden rounded-2xl">
               <div
                 className="h-40 border-b border-glass-border"
-                style={{ background: "linear-gradient(135deg, oklch(0.22 0.1 250), oklch(0.13 0.04 240))" }}
+                style={{ background: "linear-gradient(135deg, oklch(0.22 0.1 35), oklch(0.13 0.04 30))" }}
               />
               <div className="p-5">
                 <span className="text-[10px] uppercase tracking-wider text-primary-glow">

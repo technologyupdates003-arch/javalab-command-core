@@ -52,8 +52,8 @@ function PortfolioPage() {
                 className="relative h-52 border-b border-glass-border"
                 style={{
                   background: `linear-gradient(135deg, oklch(0.22 0.1 ${
-                    250 + items.indexOf(p) * 8
-                  }), oklch(0.14 0.04 240))`,
+                    35 + items.indexOf(p) * 8
+                  }), oklch(0.14 0.04 30))`,
                 }}
               >
                 <div className="absolute inset-0 grid-bg opacity-50" />

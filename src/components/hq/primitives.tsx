@@ -16,7 +16,7 @@ export function GlassCard({
     <div
       className={cn(
         "glass-elevated rounded-2xl p-5 transition-all",
-        hover && "hover:border-primary/40 hover:shadow-[0_0_40px_-8px_oklch(0.72_0.22_250/0.35)]",
+        hover && "hover:border-primary/40 hover:shadow-[0_0_40px_-8px_oklch(0.65_0.22_35/0.35)]",
         className,
       )}
     >

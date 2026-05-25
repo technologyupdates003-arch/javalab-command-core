@@ -1,15 +1,24 @@
 {
-  "name": "tanstack_start_ts",
+  "name": "javalab-hq-system",
   "private": true,
   "sideEffects": false,
   "type": "module",
+  "workspaces": [
+    "backend"
+  ],
   "scripts": {
     "dev": "vite dev",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:all": "concurrently \"npm run dev\" \"npm run dev:backend\"",
     "build": "vite build",
+    "build:backend": "cd backend && npm run build",
+    "build:all": "npm run build && npm run build:backend",
     "build:dev": "vite build --mode development",
     "preview": "vite preview",
     "lint": "eslint .",
-    "format": "prettier --write ."
+    "lint:backend": "cd backend && npm run lint",
+    "format": "prettier --write .",
+    "format:backend": "cd backend && npm run format"
   },
   "dependencies": {
     "@cloudflare/vite-plugin": "^1.25.5",
@@ -74,6 +83,7 @@
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
     "@vitejs/plugin-react": "^5.0.4",
+    "concurrently": "^8.2.2",
     "eslint": "^9.32.0",
     "eslint-config-prettier": "^10.1.1",
     "eslint-plugin-prettier": "^5.2.6",

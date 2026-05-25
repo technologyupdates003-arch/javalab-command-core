@@ -28,7 +28,7 @@ function LoginPage() {
       <div className="relative w-full max-w-md">
         <div className="glass-elevated rounded-3xl p-8">
           <div className="text-center">
-            <div className="mx-auto flex size-12 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-primary-glow shadow-[0_0_24px_-4px_oklch(0.72_0.22_250/0.6)]">
+            <div className="mx-auto flex size-12 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-primary-glow shadow-[0_0_24px_-4px_oklch(0.65_0.22_35/0.6)]">
               <Lock className="size-5 text-primary-foreground" />
             </div>
             <h1 className="mt-4 font-display text-2xl font-semibold tracking-tight">
@@ -64,7 +64,7 @@ function LoginPage() {
             )}
             <button
               type="submit"
-              className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-primary to-primary-glow text-sm font-medium text-primary-foreground shadow-[0_0_28px_-4px_oklch(0.72_0.22_250/0.7)]"
+              className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-primary to-primary-glow text-sm font-medium text-primary-foreground shadow-[0_0_28px_-4px_oklch(0.65_0.22_35/0.7)]"
             >
               {mode === "login" && "Sign in"}
               {mode === "register" && "Create account"}

@@ -36,7 +36,7 @@ function ProductsPage() {
                 className="relative h-44 border-b border-glass-border"
                 style={{
                   background:
-                    "linear-gradient(135deg, oklch(0.22 0.1 250), oklch(0.13 0.04 240))",
+                    "linear-gradient(135deg, oklch(0.22 0.1 35), oklch(0.13 0.04 30))",
                 }}
               >
                 <div className="absolute inset-0 grid-bg opacity-50" />

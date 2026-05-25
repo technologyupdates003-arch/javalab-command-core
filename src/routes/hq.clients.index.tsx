@@ -33,7 +33,7 @@ function ClientsPage() {
             <button className="glass inline-flex h-9 items-center gap-1.5 rounded-lg px-3 text-xs font-medium hover:border-primary/40">
               <Download className="size-3.5" /> Export
             </button>
-            <button className="inline-flex h-9 items-center gap-1.5 rounded-lg bg-gradient-to-r from-primary to-primary-glow px-3 text-xs font-medium text-primary-foreground shadow-[0_0_24px_-4px_oklch(0.72_0.22_250/0.6)] hover:shadow-[0_0_32px_-4px_oklch(0.72_0.22_250/0.8)]">
+            <button className="inline-flex h-9 items-center gap-1.5 rounded-lg bg-gradient-to-r from-primary to-primary-glow px-3 text-xs font-medium text-primary-foreground shadow-[0_0_24px_-4px_oklch(0.65_0.22_35/0.6)] hover:shadow-[0_0_32px_-4px_oklch(0.65_0.22_35/0.8)]">
               <Plus className="size-3.5" /> New client
             </button>
           </div>

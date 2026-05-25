@@ -19,7 +19,7 @@ export function SiteHeader() {
     <header className="sticky top-0 z-40 border-b border-glass-border bg-background/70 backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-7xl items-center gap-4 px-4 md:px-6">
         <Link to="/" className="flex items-center gap-2.5">
-          <div className="flex size-8 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-primary-glow shadow-[0_0_24px_-4px_oklch(0.72_0.22_250/0.6)]">
+          <div className="flex size-8 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-primary-glow shadow-[0_0_24px_-4px_oklch(0.65_0.22_35/0.6)]">
             <span className="font-display text-sm font-bold text-primary-foreground">J</span>
           </div>
           <div className="flex flex-col leading-tight">
@@ -55,7 +55,7 @@ export function SiteHeader() {
           </Link>
           <Link
             to="/quote"
-            className="inline-flex h-9 items-center gap-1.5 rounded-lg bg-gradient-to-r from-primary to-primary-glow px-3.5 text-xs font-medium text-primary-foreground shadow-[0_0_20px_-4px_oklch(0.72_0.22_250/0.6)] transition-shadow hover:shadow-[0_0_32px_-4px_oklch(0.72_0.22_250/0.9)]"
+            className="inline-flex h-9 items-center gap-1.5 rounded-lg bg-gradient-to-r from-primary to-primary-glow px-3.5 text-xs font-medium text-primary-foreground shadow-[0_0_20px_-4px_oklch(0.65_0.22_35/0.6)] transition-shadow hover:shadow-[0_0_32px_-4px_oklch(0.65_0.22_35/0.9)]"
           >
             Start Project <ArrowRight className="size-3.5" />
           </Link>

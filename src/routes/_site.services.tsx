@@ -48,7 +48,7 @@ function ServicesPage() {
           {services.map((s) => (
             <div
               key={s.slug}
-              className="group glass-elevated rounded-2xl p-6 transition-all hover:border-primary/40 hover:shadow-[0_0_40px_-8px_oklch(0.72_0.22_250/0.4)]"
+              className="group glass-elevated rounded-2xl p-6 transition-all hover:border-primary/40 hover:shadow-[0_0_40px_-8px_oklch(0.65_0.22_35/0.4)]"
             >
               <div className="flex size-12 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/30 to-chart-5/20 text-2xl ring-1 ring-white/10">
                 {s.icon}

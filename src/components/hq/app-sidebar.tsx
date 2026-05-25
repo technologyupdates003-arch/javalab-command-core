@@ -84,7 +84,7 @@ export function AppSidebar() {
     <Sidebar collapsible="icon" className="border-r border-sidebar-border">
       <SidebarHeader className="border-b border-sidebar-border">
         <Link to="/hq" className="flex items-center gap-2.5 px-2 py-2">
-          <div className="relative flex size-8 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-primary-glow shadow-[0_0_20px_-2px_oklch(0.72_0.22_250/0.6)]">
+          <div className="relative flex size-8 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-primary-glow shadow-[0_0_20px_-2px_oklch(0.65_0.22_35/0.6)]">
             <Activity className="size-4 text-primary-foreground" strokeWidth={2.5} />
           </div>
           <div className="flex flex-col leading-tight group-data-[collapsible=icon]:hidden">

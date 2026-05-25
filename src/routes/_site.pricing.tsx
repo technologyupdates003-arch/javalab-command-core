@@ -90,7 +90,7 @@ function PricingPage() {
                   className={
                     "mt-7 inline-flex h-11 w-full items-center justify-center gap-2 rounded-lg text-sm font-medium transition-shadow " +
                     (p.best
-                      ? "bg-gradient-to-r from-primary to-primary-glow text-primary-foreground shadow-[0_0_24px_-4px_oklch(0.72_0.22_250/0.7)] hover:shadow-[0_0_36px_-4px_oklch(0.72_0.22_250/0.95)]"
+                      ? "bg-gradient-to-r from-primary to-primary-glow text-primary-foreground shadow-[0_0_24px_-4px_oklch(0.65_0.22_35/0.7)] hover:shadow-[0_0_36px_-4px_oklch(0.65_0.22_35/0.95)]"
                       : "glass hover:border-primary/40")
                   }
                 >

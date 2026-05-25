@@ -102,7 +102,7 @@ function ContactPage() {
                 </div>
                 <button
                   type="submit"
-                  className="mt-5 inline-flex h-11 items-center gap-2 rounded-lg bg-gradient-to-r from-primary to-primary-glow px-5 text-sm font-medium text-primary-foreground shadow-[0_0_24px_-4px_oklch(0.72_0.22_250/0.7)]"
+                  className="mt-5 inline-flex h-11 items-center gap-2 rounded-lg bg-gradient-to-r from-primary to-primary-glow px-5 text-sm font-medium text-primary-foreground shadow-[0_0_24px_-4px_oklch(0.65_0.22_35/0.7)]"
                 >
                   Send message <Send className="size-4" />
                 </button>
@@ -115,7 +115,7 @@ function ContactPage() {
           className="mt-10 h-72 overflow-hidden rounded-2xl border border-glass-border bg-background/60"
           style={{
             backgroundImage:
-              "radial-gradient(circle at 50% 50%, oklch(0.72 0.22 250 / 0.2), transparent 60%), repeating-linear-gradient(0deg, oklch(1 0 0 / 0.04) 0 1px, transparent 1px 40px), repeating-linear-gradient(90deg, oklch(1 0 0 / 0.04) 0 1px, transparent 1px 40px)",
+              "radial-gradient(circle at 50% 50%, oklch(0.65 0.22 35 / 0.2), transparent 60%), repeating-linear-gradient(0deg, oklch(1 0 0 / 0.04) 0 1px, transparent 1px 40px), repeating-linear-gradient(90deg, oklch(1 0 0 / 0.04) 0 1px, transparent 1px 40px)",
           }}
         >
           <div className="flex h-full items-center justify-center">

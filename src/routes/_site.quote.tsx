@@ -145,7 +145,7 @@ function QuotePage() {
 
               <button
                 type="submit"
-                className="mt-7 inline-flex h-11 items-center gap-2 rounded-lg bg-gradient-to-r from-primary to-primary-glow px-5 text-sm font-medium text-primary-foreground shadow-[0_0_28px_-4px_oklch(0.72_0.22_250/0.7)]"
+                className="mt-7 inline-flex h-11 items-center gap-2 rounded-lg bg-gradient-to-r from-primary to-primary-glow px-5 text-sm font-medium text-primary-foreground shadow-[0_0_28px_-4px_oklch(0.65_0.22_35/0.7)]"
               >
                 Send request <Send className="size-4" />
               </button>
