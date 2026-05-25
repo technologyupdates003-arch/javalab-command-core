@@ -15,6 +15,7 @@ import { Route as SiteRouteImport } from './routes/_site'
 import { Route as HqIndexRouteImport } from './routes/hq.index'
 import { Route as SiteIndexRouteImport } from './routes/_site.index'
 import { Route as SiteSupportRouteImport } from './routes/_site.support'
+import { Route as SiteSignupRouteImport } from './routes/_site.signup'
 import { Route as SiteServicesRouteImport } from './routes/_site.services'
 import { Route as SiteQuoteRouteImport } from './routes/_site.quote'
 import { Route as SiteProductsRouteImport } from './routes/_site.products'
@@ -68,6 +69,11 @@ const SiteIndexRoute = SiteIndexRouteImport.update({
 const SiteSupportRoute = SiteSupportRouteImport.update({
   id: '/support',
   path: '/support',
+  getParentRoute: () => SiteRoute,
+} as any)
+const SiteSignupRoute = SiteSignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
   getParentRoute: () => SiteRoute,
 } as any)
 const SiteServicesRoute = SiteServicesRouteImport.update({
@@ -209,6 +215,7 @@ export interface FileRoutesByFullPath {
   '/products': typeof SiteProductsRoute
   '/quote': typeof SiteQuoteRoute
   '/services': typeof SiteServicesRoute
+  '/signup': typeof SiteSignupRoute
   '/support': typeof SiteSupportRoute
   '/hq/': typeof HqIndexRoute
   '/hq/clients/$id': typeof HqClientsIdRoute
@@ -239,6 +246,7 @@ export interface FileRoutesByTo {
   '/products': typeof SiteProductsRoute
   '/quote': typeof SiteQuoteRoute
   '/services': typeof SiteServicesRoute
+  '/signup': typeof SiteSignupRoute
   '/support': typeof SiteSupportRoute
   '/': typeof SiteIndexRoute
   '/hq': typeof HqIndexRoute
@@ -273,6 +281,7 @@ export interface FileRoutesById {
   '/_site/products': typeof SiteProductsRoute
   '/_site/quote': typeof SiteQuoteRoute
   '/_site/services': typeof SiteServicesRoute
+  '/_site/signup': typeof SiteSignupRoute
   '/_site/support': typeof SiteSupportRoute
   '/_site/': typeof SiteIndexRoute
   '/hq/': typeof HqIndexRoute
@@ -308,6 +317,7 @@ export interface FileRouteTypes {
     | '/products'
     | '/quote'
     | '/services'
+    | '/signup'
     | '/support'
     | '/hq/'
     | '/hq/clients/$id'
@@ -338,6 +348,7 @@ export interface FileRouteTypes {
     | '/products'
     | '/quote'
     | '/services'
+    | '/signup'
     | '/support'
     | '/'
     | '/hq'
@@ -371,6 +382,7 @@ export interface FileRouteTypes {
     | '/_site/products'
     | '/_site/quote'
     | '/_site/services'
+    | '/_site/signup'
     | '/_site/support'
     | '/_site/'
     | '/hq/'
@@ -441,6 +453,13 @@ declare module '@tanstack/react-router' {
       path: '/support'
       fullPath: '/support'
       preLoaderRoute: typeof SiteSupportRouteImport
+      parentRoute: typeof SiteRoute
+    }
+    '/_site/signup': {
+      id: '/_site/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SiteSignupRouteImport
       parentRoute: typeof SiteRoute
     }
     '/_site/services': {
@@ -631,6 +650,7 @@ interface SiteRouteChildren {
   SiteProductsRoute: typeof SiteProductsRoute
   SiteQuoteRoute: typeof SiteQuoteRoute
   SiteServicesRoute: typeof SiteServicesRoute
+  SiteSignupRoute: typeof SiteSignupRoute
   SiteSupportRoute: typeof SiteSupportRoute
   SiteIndexRoute: typeof SiteIndexRoute
 }
@@ -645,6 +665,7 @@ const SiteRouteChildren: SiteRouteChildren = {
   SiteProductsRoute: SiteProductsRoute,
   SiteQuoteRoute: SiteQuoteRoute,
   SiteServicesRoute: SiteServicesRoute,
+  SiteSignupRoute: SiteSignupRoute,
   SiteSupportRoute: SiteSupportRoute,
   SiteIndexRoute: SiteIndexRoute,
 }
@@ -700,3 +721,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
